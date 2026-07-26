@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
 
 export const metadata: Metadata = {
     title: "About Us",
@@ -11,7 +12,7 @@ export default function AboutPage() {
             {/* Hero Section */}
             <div className="bg-primary pt-32 pb-20 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-                <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
+                <ScrollReveal className="container mx-auto px-4 md:px-8 relative z-10 text-center">
                     <span className="text-secondary font-serif italic text-lg mb-4 block">
                         Our Story
                     </span>
@@ -21,16 +22,16 @@ export default function AboutPage() {
                     <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
                         Marjaan Collection was born from a simple belief — that true elegance starts with holistic wellness and uncompromising comfort. What began as a passion for premium footwear has evolved into Pakistan&apos;s trusted destination for both luxury shoes and pure, self-made organic body care.
                     </p>
-                </div>
+                </ScrollReveal>
             </div>
 
             {/* Minimal Content */}
-            <div className="container mx-auto px-4 md:px-8 mt-16 max-w-3xl text-center">
+            <ScrollReveal delay={0.2} className="container mx-auto px-4 md:px-8 mt-16 max-w-3xl text-center">
                 <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4">Where It All Began</h2>
                 <p className="text-base text-muted-foreground leading-relaxed">
                     We saw a gap in the market for a brand that could provide both international design standards in footwear and the purest natural ingredients in self-care. Today, our collection spans elegant stilettos, block heels, and strappy sandals, alongside our signature line of handmade organic shampoos, nourishing hair oils, body scrubs, and keratin treatments. Each product is crafted to help you look your best and feel completely nurtured.
                 </p>
-            </div>
+            </ScrollReveal>
         </div>
     );
 }

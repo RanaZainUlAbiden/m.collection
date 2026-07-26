@@ -104,8 +104,8 @@ function LiquidBackground() {
     }), []);
 
     return (
-        <mesh>
-            <planeGeometry args={[viewport.width, viewport.height]} />
+        <mesh scale={[viewport.width, viewport.height, 1]}>
+            <planeGeometry args={[1, 1]} />
             <shaderMaterial
                 ref={materialRef}
                 vertexShader={vertexShaderBg}
