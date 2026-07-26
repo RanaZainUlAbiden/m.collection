@@ -13,9 +13,9 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ShoppingCart, Search, Heart, ChevronDown, Footprints, Leaf, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { SearchModal } from "@/components/search/SearchModal";
 import { CartSheet } from "@/components/cart/CartSheet";
 import { Logo } from "@/components/ui/Logo";
@@ -44,6 +44,18 @@ export function Navbar() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // Prevent body scroll when mobile menu is open
+    useEffect(() => {
+        if (open) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+        return () => {
+            document.body.style.overflow = "unset";
+        };
+    }, [open]);
 
     // Helper function to determine if a route is currently active
     // Handles the root path uniquely to prevent it from matching all routes
@@ -95,36 +107,79 @@ export function Navbar() {
                         </Button>
                     </CartSheet>
 
-                    {/* Mobile Menu */}
-                    <Sheet open={open} onOpenChange={setOpen}>
-                        <SheetTrigger className="lg:hidden p-2 hover:bg-secondary/20 rounded-full transition-colors">
-                            <Menu className="w-6 h-6 text-foreground" />
-                        </SheetTrigger>
-                        <SheetContent side="right" className="w-full sm:w-[400px] bg-muted border-none flex flex-col justify-center">
-                            <div className="flex flex-col items-center gap-12 mt-8">
-                                <Logo />
-                                <nav className="flex flex-col items-center gap-8">
-                                    {navLinks.map((link) => (
-                                        <Link 
-                                            key={link.name}
-                                            href={link.href} 
-                                            onClick={() => setOpen(false)}
-                                            className={`text-2xl font-heading font-normal transition-colors hover:text-primary ${pathname === link.href ? "text-primary" : "text-foreground"}`}
-                                        >
-                                            {link.name}
-                                        </Link>
+                    {/* Mobile Menu Trigger */}
+                    <button onClick={() => setOpen(true)} className="lg:hidden p-2 hover:bg-secondary/20 rounded-full transition-colors">
+                        <Menu className="w-6 h-6 text-foreground" />
+                    </button>
+
+                    {/* Luxury Full-Screen Mobile Menu */}
+                    <AnimatePresence>
+                        {open && (
+                            <motion.div
+                                initial={{ opacity: 0, y: "-100%" }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: "-100%" }}
+                                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                                className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-2xl flex flex-col items-center justify-center h-[100dvh] w-[100vw]"
+                            >
+                                {/* Close Button */}
+                                <button 
+                                    onClick={() => setOpen(false)}
+                                    className="absolute top-6 right-6 p-4 rounded-full bg-secondary/5 hover:bg-secondary/10 transition-colors z-[110]"
+                                >
+                                    <X className="w-6 h-6 text-foreground" />
+                                </button>
+
+                                {/* Navigation Links */}
+                                <nav className="flex flex-col items-center gap-6 sm:gap-8 w-full px-6 z-[110]">
+                                    {navLinks.map((link, i) => (
+                                        <div key={link.name} className="overflow-hidden">
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 100 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: 100 }}
+                                                transition={{ duration: 0.6, delay: 0.1 + (i * 0.08), ease: [0.22, 1, 0.36, 1] }}
+                                            >
+                                                <Link 
+                                                    href={link.href} 
+                                                    onClick={() => setOpen(false)}
+                                                    className={`text-4xl sm:text-5xl md:text-7xl font-serif italic transition-all duration-300 hover:text-primary ${pathname === link.href ? "text-primary" : "text-foreground"}`}
+                                                >
+                                                    {link.name}
+                                                </Link>
+                                            </motion.div>
+                                        </div>
                                     ))}
+
+                                    {/* Order Now CTA */}
+                                    <div className="overflow-hidden mt-8 w-full max-w-[280px]">
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 100 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: 100 }}
+                                            transition={{ duration: 0.6, delay: 0.1 + (navLinks.length * 0.08), ease: [0.22, 1, 0.36, 1] }}
+                                        >
+                                            <CartSheet>
+                                                <button onClick={() => setOpen(false)} className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full text-sm font-bold tracking-widest uppercase h-14 transition-colors flex items-center justify-center">
+                                                    Order Now
+                                                </button>
+                                            </CartSheet>
+                                        </motion.div>
+                                    </div>
                                 </nav>
-                                <div className="mt-8 flex flex-col gap-4 w-full px-8">
-                                    <CartSheet>
-                                        <Button onClick={() => setOpen(false)} variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full text-xs tracking-widest uppercase h-14 bg-transparent transition-colors">
-                                            Order Now
-                                        </Button>
-                                    </CartSheet>
-                                </div>
-                            </div>
-                        </SheetContent>
-                    </Sheet>
+
+                                {/* Background Logo watermark */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 0.05, scale: 1 }}
+                                    transition={{ duration: 1, delay: 0.5 }}
+                                    className="absolute inset-0 pointer-events-none flex items-center justify-center z-[105]"
+                                >
+                                    <Logo variant="default" className="scale-[4] sm:scale-[6] filter grayscale" />
+                                </motion.div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                 </div>
             </div>
         </header>
