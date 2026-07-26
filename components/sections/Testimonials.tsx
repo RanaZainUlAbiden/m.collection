@@ -17,7 +17,7 @@ const testimonials = [
         location: "Karachi, PK",
     },
     {
-        quote: "Best footwear brand in Pakistan. My entire family now shops from MR. Absolutely love the comfort!",
+        quote: "Best footwear brand in Pakistan. My entire family now shops from Marjaan Collection. Absolutely love the comfort!",
         name: "Usman M.",
         location: "Islamabad, PK",
     },
@@ -59,7 +59,7 @@ export function Testimonials() {
                     </div>
 
                     <h2 className="text-2xl md:text-4xl lg:text-5xl font-serif italic text-white leading-[1.3] mb-10 font-normal">
-                        &ldquo;{t.quote}&rdquo;
+                        {t.quote}
                     </h2>
 
                     <div className="flex flex-col items-center justify-center">

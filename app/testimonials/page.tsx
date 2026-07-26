@@ -40,7 +40,7 @@ export default function ReviewsPage() {
                             </div>
 
                             <blockquote className="text-sm font-medium leading-relaxed text-foreground mb-6 flex-grow">
-                                &ldquo;{review.comment}&rdquo;
+                                {review.comment}
                             </blockquote>
 
                             <div className="mt-auto pt-4 border-t border-border/50">

@@ -56,14 +56,7 @@ export const testimonialsData: Testimonial[] = [
         purchased: "WALKZE SLIDES - Pink (EU 40)",
         comment: "Blending contemporary style with everyday comfort! The medicated insole is a game changer for daily wear."
     },
-    {
-        id: "r7",
-        name: "Marium Iftikhar",
-        city: "Karachi",
-        date: "May 15, 2026",
-        purchased: "SILKEN SANDAL - Gold (EU 38)",
-        comment: "کیا بات ہے جناب! لاجواب کوالٹی۔ The gold color is so vibrant and elegant. Perfect festive wear."
-    },
+
     {
         id: "r8",
         name: "Sana Imran",
@@ -72,14 +65,7 @@ export const testimonialsData: Testimonial[] = [
         purchased: "DAISY SLIDES - Beige (EU 39)",
         comment: "Bht zabardast slides hain. Office aur casual wear dono k liye best hain. Keep up the good work guys!"
     },
-    {
-        id: "r9",
-        name: "Huma Sheikh",
-        city: "Peshawar",
-        date: "April 20, 2026",
-        purchased: "SPARKE SLIDES - Black (EU 37)",
-        comment: "بہت پیاری پیکنگ اور اس سے بھی پیارا ڈیزائن۔ میری طرف سے مکمل 5 ستارے۔"
-    },
+
     {
         id: "r10",
         name: "Iqra Jameel",
