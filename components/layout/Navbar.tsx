@@ -69,7 +69,7 @@ export function Navbar() {
                 {/* Actions */}
                 <div className="flex items-center gap-2 md:gap-3">
                     <SearchModal>
-                        <Button variant="ghost" size="icon" className="hidden sm:flex rounded-full hover:bg-secondary/20">
+                        <Button variant="ghost" size="icon" className="flex rounded-full hover:bg-secondary/20">
                             <Search className="w-5 h-5 text-muted-foreground" />
                         </Button>
                     </SearchModal>
