@@ -9,13 +9,18 @@ export const metadata: Metadata = {
 
 export default function ReviewsPage() {
     return (
-        <div className="bg-muted min-h-screen pb-24">
+        <div 
+            className="bg-muted min-h-screen pb-24"
+            style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.03' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1.5'/%3E%3Ccircle cx='13' cy='13' r='1.5'/%3E%3C/g%3E%3C/svg%3E")`,
+            }}
+        >
             {/* Header */}
             <div className="bg-primary text-white py-24 md:py-28 relative overflow-hidden">
                 <div className="absolute inset-0 z-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at center, white 0%, transparent 70%)", backgroundSize: "100px 100px" }} />
                 <div className="absolute top-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
 
-                <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl relative z-10">
+                <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl relative z-10 mt-[10px]">
                     <span className="text-secondary font-serif italic text-lg mb-4 block">Verified Buyers</span>
                     <h1 className="text-4xl md:text-6xl font-heading font-bold mb-6">
                         What Pakistan is <span className="text-secondary italic">Saying</span>
@@ -33,7 +38,7 @@ export default function ReviewsPage() {
                     {testimonialsData.map((review) => (
                         <div
                             key={review.id}
-                            className="bg-white border border-border/60 p-6 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col h-full rounded-2xl"
+                            className="bg-white/40 backdrop-blur-md border border-white/60 p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:bg-white/60 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full rounded-lg"
                         >
                             <div className="flex justify-end items-start mb-4">
                                 <span className="text-xs text-muted-foreground">{review.date}</span>
