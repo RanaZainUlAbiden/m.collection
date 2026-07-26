@@ -66,7 +66,7 @@ export function CartSheet({ children }: CartSheetProps) {
                         </div>
                     ) : (
                         items.map((item) => (
-                            <div key={item.cartItemId} className="flex gap-4 items-center py-5 border-b border-border/50">
+                            <div key={item.cartItemId} className="flex gap-4 py-5 border-b border-border/50">
                                 <div className="relative w-20 h-20 bg-transparent rounded-xl overflow-hidden flex-shrink-0">
                                     <Image
                                         src={item.product.image}
@@ -76,39 +76,43 @@ export function CartSheet({ children }: CartSheetProps) {
                                         className="object-contain p-2 group-hover:scale-110 transition-transform duration-500 mix-blend-multiply"
                                     />
                                 </div>
-                                <div className="flex-1 min-w-0">
-                                    <h4 className="font-bold text-sm text-foreground line-clamp-1">{item.product.name}</h4>
-                                    <p className="text-xs text-muted-foreground mb-2 mt-1">
-                                        PKR {item.product.price}
-                                        {item.size && ` | Size: ${item.size}`}
-                                        {item.color && ` | Color: ${item.color}`}
-                                    </p>
-                                    <div className="flex items-center gap-2 w-fit rounded-lg border border-border bg-white">
+                                <div className="flex flex-col flex-1 min-w-0 justify-between">
+                                    <div className="flex justify-between items-start gap-2">
+                                        <div>
+                                            <h4 className="font-bold text-sm text-foreground line-clamp-2 leading-tight">{item.product.name || 'Unnamed Product'}</h4>
+                                            <p className="text-xs text-muted-foreground mt-1">
+                                                PKR {item.product.price}
+                                                {item.size && ` | Size: ${item.size}`}
+                                                {item.color && ` | Color: ${item.color}`}
+                                            </p>
+                                        </div>
                                         <button
-                                            onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
-                                            className="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors"
+                                            onClick={() => removeFromCart(item.cartItemId)}
+                                            className="p-1 text-muted-foreground hover:text-[#A33327] transition-colors flex-shrink-0"
                                         >
-                                            <Minus className="w-3 h-3" />
-                                        </button>
-                                        <span className="text-sm font-bold w-4 text-center">{item.quantity}</span>
-                                        <button
-                                            onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
-                                            className="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors"
-                                        >
-                                            <Plus className="w-3 h-3" />
+                                            <Trash2 className="w-4 h-4" />
                                         </button>
                                     </div>
-                                </div>
-                                <div className="flex flex-col items-end gap-2">
-                                    <button
-                                        onClick={() => removeFromCart(item.cartItemId)}
-                                        className="p-1.5 text-muted-foreground hover:text-[#A33327] transition-colors"
-                                    >
-                                        <Trash2 className="w-4 h-4" />
-                                    </button>
-                                    <p className="font-bold text-sm text-foreground">
-                                        PKR {item.product.price * item.quantity}
-                                    </p>
+                                    <div className="flex items-center justify-between mt-3">
+                                        <div className="flex items-center gap-2 w-fit rounded-lg border border-border bg-white">
+                                            <button
+                                                onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
+                                                className="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors"
+                                            >
+                                                <Minus className="w-3 h-3" />
+                                            </button>
+                                            <span className="text-sm font-bold w-4 text-center">{item.quantity}</span>
+                                            <button
+                                                onClick={() => updateQuantity(item.cartItemId, item.quantity + 1)}
+                                                className="w-8 h-8 flex items-center justify-center hover:text-primary transition-colors"
+                                            >
+                                                <Plus className="w-3 h-3" />
+                                            </button>
+                                        </div>
+                                        <p className="font-bold text-sm text-foreground">
+                                            PKR {item.product.price * item.quantity}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         ))
