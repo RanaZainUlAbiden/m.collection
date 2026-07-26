@@ -16,6 +16,7 @@ export function Logo({ variant = "default", className }: LogoProps) {
                     src="/IMG_9226.PNG"
                     alt="Marjaan Collection"
                     fill
+                    sizes="80px"
                     className={cn(
                         "object-contain transition-all duration-300",
                         variant === "light" && "brightness-0 invert opacity-90"
