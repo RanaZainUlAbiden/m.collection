@@ -19,7 +19,7 @@ export default function AboutPage() {
                         Designing for the <span className="text-secondary italic">Modern Woman</span>
                     </h1>
                     <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
-                        MR was born from a simple belief — that true elegance starts with holistic wellness and uncompromising comfort. What began as a passion for premium footwear has evolved into Pakistan&apos;s trusted destination for both luxury shoes and pure, self-made organic body care.
+                        Marjaan Collection was born from a simple belief — that true elegance starts with holistic wellness and uncompromising comfort. What began as a passion for premium footwear has evolved into Pakistan&apos;s trusted destination for both luxury shoes and pure, self-made organic body care.
                     </p>
                 </div>
             </div>

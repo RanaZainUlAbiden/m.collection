@@ -9,9 +9,9 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const resolvedParams = await params;
     const product = products.find(p => p.id === resolvedParams.slug);
-    if (!product) return { title: "Not Found | MR Footwear" };
+    if (!product) return { title: "Not Found | Marjaan Collection" };
     return {
-        title: `${product.name} | MR Footwear`,
+        title: `${product.name} | Marjaan Collection`,
         description: product.shortDescription,
     };
 }
