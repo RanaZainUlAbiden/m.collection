@@ -39,7 +39,7 @@ export function SearchModal({ children }: { children?: React.ReactNode }) {
                     <span className="sr-only">Search</span>
                 </DialogTrigger>
             )}
-            <DialogContent className="sm:max-w-[600px] bg-white/95 backdrop-blur-xl border border-border/50 p-0 overflow-hidden rounded-2xl gap-0 shadow-xl">
+            <DialogContent className="sm:max-w-[600px] bg-white/95 backdrop-blur-xl border border-border/50 p-0 overflow-hidden rounded-lg gap-0 shadow-xl">
                 <DialogTitle className="sr-only">Search Products</DialogTitle>
                 <div className="p-4 border-b border-border flex items-center gap-3 bg-white">
                     <Search className="w-5 h-5 text-muted-foreground" />
@@ -65,8 +65,8 @@ export function SearchModal({ children }: { children?: React.ReactNode }) {
                     ) : (
                         <div className="flex flex-col gap-2">
                             {filteredProducts.map(product => (
-                                <div key={product.id} className="flex gap-4 items-center p-3 rounded-xl border border-border/40 shadow-sm hover:border-primary/30 transition-colors group">
-                                    <Link href={product.productLine === 'organics' ? `/shop/organics/${product.id}` : `/shop/${product.id}`} onClick={() => setOpen(false)} className="w-20 h-20 relative rounded-xl overflow-hidden flex-shrink-0">
+                                <div key={product.id} className="flex gap-4 items-center p-3 rounded-md border border-border/40 shadow-sm hover:border-primary/30 transition-colors group">
+                                    <Link href={product.productLine === 'organics' ? `/shop/organics/${product.id}` : `/shop/${product.id}`} onClick={() => setOpen(false)} className="w-20 h-20 relative rounded-md overflow-hidden flex-shrink-0">
                                         <Image
                                             src={product.image}
                                             alt={product.name}
