@@ -29,6 +29,7 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://marjaancollection.vercel.app"),
   title: {
     template: "%s | Marjaan Collection",
     default: "Marjaan Collection | Premium Footwear & Organic Care",
