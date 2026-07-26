@@ -1,6 +1,5 @@
-"use client";
-
-import { useRef, useEffect, MouseEventHandler, ReactNode } from 'react';
+'use client';
+import { useRef, useEffect } from 'react';
 import { Renderer, Program, Mesh, Triangle, Color } from 'ogl';
 import './SpecularButton.css';
 
@@ -68,8 +67,8 @@ void main() {
 }
 `;
 
-export interface SpecularButtonProps {
-  children?: ReactNode;
+export interface SpecularButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: React.ReactNode;
   size?: 'sm' | 'md' | 'lg';
   radius?: number;
   tint?: string;
@@ -86,11 +85,6 @@ export interface SpecularButtonProps {
   followMouse?: boolean;
   proximity?: number;
   autoAnimate?: boolean;
-  disabled?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  className?: string;
-  type?: 'button' | 'submit' | 'reset';
-  asChild?: boolean;
 }
 
 const SpecularButton = ({
@@ -114,13 +108,16 @@ const SpecularButton = ({
   disabled = false,
   onClick,
   className = '',
-  type = 'button'
+  type = 'button',
+  ...rest
 }: SpecularButtonProps) => {
   const btnRef = useRef<HTMLButtonElement>(null);
   const fxRef = useRef<HTMLSpanElement>(null);
   const propsRef = useRef({ radius, lineColor, baseColor, intensity, shineSize, shineFade, thickness, speed, followMouse, proximity, autoAnimate });
 
-  propsRef.current = { radius, lineColor, baseColor, intensity, shineSize, shineFade, thickness, speed, followMouse, proximity, autoAnimate };
+  useEffect(() => {
+    propsRef.current = { radius, lineColor, baseColor, intensity, shineSize, shineFade, thickness, speed, followMouse, proximity, autoAnimate };
+  }, [radius, lineColor, baseColor, intensity, shineSize, shineFade, thickness, speed, followMouse, proximity, autoAnimate]);
 
   useEffect(() => {
     const btn = btnRef.current;
@@ -135,7 +132,7 @@ const SpecularButton = ({
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
     const geometry = new Triangle(gl);
-    if (geometry.attributes.uv) delete geometry.attributes.uv;
+    if (geometry.attributes.uv) delete (geometry.attributes as Record<string, unknown>).uv;
 
     const program = new Program(gl, {
       vertex: VERT,
@@ -152,6 +149,7 @@ const SpecularButton = ({
         uShineSize: { value: 0.17 },
         uShineFade: { value: 0.7 },
         uThickness: { value: 1 },
+
         uBaseWidth: { value: dpr }
       }
     });
@@ -176,13 +174,14 @@ const SpecularButton = ({
 
     let pointerAngle: number | null = null;
     let proximityT = 0;
-    const onPointerMove = (e: PointerEvent) => {
+    const onPointerMove = (e: MouseEvent) => {
       const rect = btn.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
       const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
       const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
       const dist = Math.hypot(dx, dy);
+      
       if (dist === 0) {
         const nx = (e.clientX - cx) / (rect.width / 2);
         const ny = (cy - e.clientY) / (rect.height / 2);
@@ -212,7 +211,7 @@ const SpecularButton = ({
 
       idleAngle += p.speed * dt;
       const steer = p.followMouse && pointerAngle != null && (!p.autoAnimate || proximityT > 0);
-      const target = steer ? (pointerAngle as number) : idleAngle;
+      const target = steer ? pointerAngle! : idleAngle;
       const diff = ((target - angle + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
       angle += diff * (1 - Math.exp(-dt * 7));
 
@@ -256,6 +255,7 @@ const SpecularButton = ({
         '--sb-blur': `${blur}px`,
         '--sb-text-color': textColor
       } as React.CSSProperties}
+      {...rest}
     >
       <span ref={fxRef} className="specular-button__fx" aria-hidden="true" />
       <span className="specular-button__label">{children}</span>

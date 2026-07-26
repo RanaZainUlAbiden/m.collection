@@ -69,6 +69,8 @@ import { AnimatedFavicon } from "@/components/ui/AnimatedFavicon";
 import { Preloader } from "@/components/ui/Preloader";
 import { BackToTop } from "@/components/ui/BackToTop";
 
+import Script from "next/script";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -84,7 +86,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script dangerouslySetInnerHTML={{ __html: `console.log("Built by Haseeb");` }} />
+        <Script id="built-by" strategy="afterInteractive">
+          {`console.log("Built by Haseeb");`}
+        </Script>
       </head>
       <body className="min-h-full flex flex-col relative overflow-x-hidden w-full">
         <Preloader />

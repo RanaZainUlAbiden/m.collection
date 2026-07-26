@@ -10,16 +10,16 @@
  */
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ShoppingCart, Search, Heart, ChevronDown, Footprints, Leaf, Sparkles } from "lucide-react";
+import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SearchModal } from "@/components/search/SearchModal";
 import { CartSheet } from "@/components/cart/CartSheet";
 import { Logo } from "@/components/ui/Logo";
-import SpecularButton from "@/components/ui/SpecularButton";
+import { StaggeredMenu } from "@/components/ui/staggered-menu";
+import GooeyNav from "@/components/ui/GooeyNav";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -32,10 +32,6 @@ const navLinks = [
 export function Navbar() {
     // Tracks if the user has scrolled past 20px to apply the translucent backdrop effect
     const [isScrolled, setIsScrolled] = useState(false);
-    
-    // Controls the mobile navigation drawer state
-    const [open, setOpen] = useState(false);
-    
     const pathname = usePathname();
 
     useEffect(() => {
@@ -45,19 +41,7 @@ export function Navbar() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
-
-    // Prevent body scroll when mobile menu is open
-    useEffect(() => {
-        if (open) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "unset";
-        }
-        return () => {
-            document.body.style.overflow = "unset";
-        };
-    }, [open]);
-
+    
     // Helper function to determine if a route is currently active
     // Handles the root path uniquely to prevent it from matching all routes
     const isActive = (href: string) => pathname.startsWith(href) && (href !== "/" || pathname === "/");
@@ -76,21 +60,11 @@ export function Navbar() {
                 <Logo variant="default" />
 
                 {/* Desktop Navigation */}
-                <nav className="hidden lg:flex items-center gap-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className={`text-sm tracking-widest uppercase font-medium transition-colors hover:text-primary ${
-                                isActive(link.href)
-                                    ? "text-primary"
-                                    : "text-foreground"
-                            }`}
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
-                </nav>
+                <div className="hidden lg:flex items-center">
+                    <GooeyNav 
+                        items={navLinks.map(link => ({ label: link.name, href: link.href }))} 
+                    />
+                </div>
 
                 {/* Actions */}
                 <div className="flex items-center gap-2 md:gap-3">
@@ -103,116 +77,34 @@ export function Navbar() {
                     <CartSheet />
 
                     <CartSheet>
-                        <div className="hidden md:flex">
-                            <SpecularButton
-                                size="md"
-                                radius={9999}
-                                tint="#ffffff"
-                                tintOpacity={0.1}
-                                blur={8}
-                                textColor="#1a1a1a"
-                                lineColor="#78716c"
-                                baseColor="#f5f5f4"
-                                intensity={0.6}
-                                thickness={0.8}
-                                speed={0.25}
-                                autoAnimate={false}
-                                className="font-sans text-xs tracking-widest uppercase shadow-sm"
-                            >
-                                Order Now
-                            </SpecularButton>
-                        </div>
+                        <Button variant="outline" className="hidden md:flex border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full px-6 text-xs tracking-widest uppercase h-10 bg-transparent transition-colors">
+                            Checkout
+                        </Button>
                     </CartSheet>
 
-                    {/* Mobile Menu Trigger */}
-                    <button onClick={() => setOpen(true)} className="lg:hidden p-2 hover:bg-secondary/20 rounded-full transition-colors">
-                        <Menu className="w-6 h-6 text-foreground" />
-                    </button>
-
-                    {/* Luxury Full-Screen Mobile Menu */}
-                    <AnimatePresence>
-                        {open && (
-                            <motion.div
-                                initial={{ opacity: 0, y: "-100%" }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: "-100%" }}
-                                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                                className="fixed inset-0 z-[100] bg-white/95 backdrop-blur-2xl flex flex-col items-center justify-center h-[100dvh] w-[100vw]"
-                            >
-                                {/* Close Button */}
-                                <button 
-                                    onClick={() => setOpen(false)}
-                                    className="absolute top-6 right-6 p-4 rounded-full bg-secondary/5 hover:bg-secondary/10 transition-colors z-[110]"
-                                >
-                                    <X className="w-6 h-6 text-foreground" />
+                    {/* Luxury Full-Screen GSAP Mobile Menu */}
+                    <div className="lg:hidden">
+                        <StaggeredMenu 
+                            position="right"
+                            items={[
+                                { label: "Home", link: "/" },
+                                { label: "Shop", link: "/shop" },
+                                { label: "About", link: "/about" },
+                                { label: "Reviews", link: "/testimonials" },
+                                { label: "Contact", link: "/contact" }
+                            ]}
+                            displaySocials={false}
+                            displayItemNumbering={false}
+                            colors={['#111111', '#D4AF37']}
+                            logoUrl="/IMG_9226.PNG"
+                        >
+                            <CartSheet>
+                                <button className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full text-sm font-bold tracking-widest uppercase h-14 transition-colors flex items-center justify-center">
+                                    Checkout
                                 </button>
-
-                                {/* Navigation Links */}
-                                <nav className="flex flex-col items-center gap-6 sm:gap-8 w-full px-6 z-[110]">
-                                    {navLinks.map((link, i) => (
-                                        <div key={link.name} className="overflow-hidden">
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 100 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                exit={{ opacity: 0, y: 100 }}
-                                                transition={{ duration: 0.6, delay: 0.1 + (i * 0.08), ease: [0.22, 1, 0.36, 1] }}
-                                            >
-                                                <Link 
-                                                    href={link.href} 
-                                                    onClick={() => setOpen(false)}
-                                                    className={`text-4xl sm:text-5xl md:text-7xl font-serif italic transition-all duration-300 hover:text-primary ${pathname === link.href ? "text-primary" : "text-foreground"}`}
-                                                >
-                                                    {link.name}
-                                                </Link>
-                                            </motion.div>
-                                        </div>
-                                    ))}
-
-                                    {/* Order Now CTA */}
-                                    <div className="overflow-hidden mt-8 w-full max-w-[280px]">
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 100 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 100 }}
-                                            transition={{ duration: 0.6, delay: 0.1 + (navLinks.length * 0.08), ease: [0.22, 1, 0.36, 1] }}
-                                        >
-                                            <CartSheet>
-                                                <div onClick={() => setOpen(false)} className="w-full flex justify-center">
-                                                    <SpecularButton
-                                                        size="lg"
-                                                        radius={9999}
-                                                        tint="#ffffff"
-                                                        tintOpacity={0.1}
-                                                        blur={8}
-                                                        textColor="#1a1a1a"
-                                                        lineColor="#78716c"
-                                                        baseColor="#f5f5f4"
-                                                        intensity={0.6}
-                                                        thickness={0.8}
-                                                        speed={0.25}
-                                                        autoAnimate={false}
-                                                        className="font-sans text-sm font-bold tracking-widest uppercase w-full shadow-sm"
-                                                    >
-                                                        Order Now
-                                                    </SpecularButton>
-                                                </div>
-                                            </CartSheet>
-                                        </motion.div>
-                                    </div>
-                                </nav>
-
-                                {/* Background Logo watermark */}
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 0.05, scale: 1 }}
-                                    transition={{ duration: 1, delay: 0.5 }}
-                                    className="absolute inset-0 pointer-events-none flex items-center justify-center z-[105]"
-                                >
-                                    <Logo variant="default" className="scale-[4] sm:scale-[6] filter grayscale" />
-                                </motion.div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                            </CartSheet>
+                        </StaggeredMenu>
+                    </div>
                 </div>
             </div>
         </header>

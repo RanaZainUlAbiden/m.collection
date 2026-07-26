@@ -13,11 +13,13 @@
 import { useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import SpecularButton from "@/components/ui/SpecularButton";
+import SplashCursor from "@/components/ui/SplashCursor";
 import Image from "next/image";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { products } from "@/data/products";
-import SpecularButton from "@/components/ui/SpecularButton";
 
 // --- Liquid Silk Background Shader ---
 const vertexShaderBg = `
@@ -121,9 +123,14 @@ function LiquidBackground() {
 
 export function HeroSection3D() {
     return (
-        <section className="relative min-h-[100dvh] w-full flex items-center pt-28 md:pt-36 pb-12 lg:pt-28 lg:pb-[25px] -mt-[15px] overflow-hidden">
-            {/* 3D Liquid Background */}
-            <div className="absolute inset-0 z-0">
+        <section
+            className="relative min-h-[100dvh] w-full flex items-center pt-28 md:pt-36 pb-12 lg:pt-28 lg:pb-[25px] -mt-[15px] overflow-hidden"
+            aria-label="MJR Collection Hero"
+        >
+            <SplashCursor />
+
+            {/* 3D Liquid Silk Background */}
+            <div className="absolute inset-0 z-0 opacity-80 mix-blend-multiply">
                 <Canvas camera={{ position: [0, 0, 1] }} gl={{ antialias: true }}>
                     <LiquidBackground />
                 </Canvas>
@@ -167,18 +174,21 @@ export function HeroSection3D() {
                     <Link href="/shop">
                         <SpecularButton
                             size="lg"
-                            radius={9999}
-                            tint="#ffffff"
+                            radius={50}
+                            tint="#fbf7f4"
                             tintOpacity={0.15}
-                            blur={12}
-                            textColor="#1c1917"
-                            lineColor="#a8a29e"
-                            baseColor="#e7e5e4"
-                            intensity={0.6}
-                            thickness={0.8}
-                            speed={0.25}
-                            autoAnimate={true}
-                            className="font-sans text-sm font-bold tracking-widest uppercase w-full sm:w-auto shadow-lg hover:shadow-xl transition-shadow"
+                            blur={20}
+                            textColor="#111111"
+                            lineColor="#c4b5a2" 
+                            baseColor="#f2e6de"
+                            intensity={2}
+                            shineSize={15}
+                            shineFade={50}
+                            thickness={2}
+                            speed={0.4}
+                            followMouse={true}
+                            proximity={300}
+                            className="tracking-widest uppercase font-bold shadow-xl w-full sm:w-auto"
                         >
                             Shop Collection
                         </SpecularButton>
