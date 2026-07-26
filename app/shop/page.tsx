@@ -14,9 +14,9 @@ import { ShopClient } from "@/components/shop/ShopClient";
 
 export default function ShopPage() {
     return (
-        <div className="bg-muted min-h-screen pb-24">
+        <div className="bg-white min-h-screen pb-24">
             {/* Header */}
-            <div className="pt-28 pb-12 md:pt-32 md:pb-16 bg-white border-b border-border">
+            <div className="pt-28 pb-12 md:pt-32 md:pb-16 bg-muted border-b border-border">
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="max-w-2xl">
                         <span className="text-primary font-serif italic text-lg mb-2 block">
