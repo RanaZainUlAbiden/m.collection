@@ -1,9 +1,7 @@
 import { Metadata } from "next";
-import { ScrollReveal } from "@/components/animations/ScrollReveal";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { ScrollReveal } from "@/components/animations/ScrollReveal";
 
 export const metadata: Metadata = {
     title: "Contact Us",
@@ -14,12 +12,14 @@ export default function ContactPage() {
     return (
         <div className="bg-background min-h-screen pb-24">
             <div className="pt-32 pb-20 border-b border-border/50">
-                <ScrollReveal className="container mx-auto px-4 md:px-8 text-center max-w-3xl">
-                    <h1 className="text-foreground mb-6">Contact Us</h1>
-                    <p className="text-lg text-muted-foreground leading-relaxed">
-                        Have a question about your order or want to learn more about our footwear? We&apos;d love to hear from you.
-                    </p>
-                </ScrollReveal>
+                <div className="container mx-auto px-4 md:px-8 text-center max-w-3xl">
+                    <ScrollReveal>
+                        <h1 className="text-foreground mb-6">Contact Us</h1>
+                        <p className="text-lg text-muted-foreground leading-relaxed">
+                            Have a question about your order or want to learn more about our footwear? We&apos;d love to hear from you.
+                        </p>
+                    </ScrollReveal>
+                </div>
             </div>
 
             <div className="container mx-auto px-4 md:px-8 mt-16">
