@@ -95,7 +95,7 @@ export function Navbar() {
                             ]}
                             displaySocials={false}
                             displayItemNumbering={false}
-                            colors={['#111111', '#D4AF37']}
+                            colors={['#111111', '#E5B9B5']}
                             logoUrl="/IMG_9226.PNG"
                         >
                             <CartSheet>
