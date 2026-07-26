@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { SearchModal } from "@/components/search/SearchModal";
 import { CartSheet } from "@/components/cart/CartSheet";
 import { Logo } from "@/components/ui/Logo";
+import SpecularButton from "@/components/ui/SpecularButton";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -102,9 +103,25 @@ export function Navbar() {
                     <CartSheet />
 
                     <CartSheet>
-                        <Button variant="outline" className="hidden md:flex border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-full px-6 text-xs tracking-widest uppercase h-10 bg-transparent transition-colors">
-                            Order Now
-                        </Button>
+                        <div className="hidden md:flex">
+                            <SpecularButton
+                                size="md"
+                                radius={9999}
+                                tint="#ffffff"
+                                tintOpacity={0.1}
+                                blur={8}
+                                textColor="#1a1a1a"
+                                lineColor="#78716c"
+                                baseColor="#f5f5f4"
+                                intensity={0.6}
+                                thickness={0.8}
+                                speed={0.25}
+                                autoAnimate={false}
+                                className="font-sans text-xs tracking-widest uppercase shadow-sm"
+                            >
+                                Order Now
+                            </SpecularButton>
+                        </div>
                     </CartSheet>
 
                     {/* Mobile Menu Trigger */}
@@ -160,9 +177,25 @@ export function Navbar() {
                                             transition={{ duration: 0.6, delay: 0.1 + (navLinks.length * 0.08), ease: [0.22, 1, 0.36, 1] }}
                                         >
                                             <CartSheet>
-                                                <button onClick={() => setOpen(false)} className="w-full border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-full text-sm font-bold tracking-widest uppercase h-14 transition-colors flex items-center justify-center">
-                                                    Order Now
-                                                </button>
+                                                <div onClick={() => setOpen(false)} className="w-full flex justify-center">
+                                                    <SpecularButton
+                                                        size="lg"
+                                                        radius={9999}
+                                                        tint="#ffffff"
+                                                        tintOpacity={0.1}
+                                                        blur={8}
+                                                        textColor="#1a1a1a"
+                                                        lineColor="#78716c"
+                                                        baseColor="#f5f5f4"
+                                                        intensity={0.6}
+                                                        thickness={0.8}
+                                                        speed={0.25}
+                                                        autoAnimate={false}
+                                                        className="font-sans text-sm font-bold tracking-widest uppercase w-full shadow-sm"
+                                                    >
+                                                        Order Now
+                                                    </SpecularButton>
+                                                </div>
                                             </CartSheet>
                                         </motion.div>
                                     </div>

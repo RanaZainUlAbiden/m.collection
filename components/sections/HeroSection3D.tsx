@@ -17,6 +17,7 @@ import Image from "next/image";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { products } from "@/data/products";
+import SpecularButton from "@/components/ui/SpecularButton";
 
 // --- Liquid Silk Background Shader ---
 const vertexShaderBg = `
@@ -163,11 +164,24 @@ export function HeroSection3D() {
                     transition={{ duration: 0.7, delay: 0.6 }}
                     className="flex flex-col sm:flex-row items-center justify-center gap-4"
                 >
-                    <Link
-                        href="/shop"
-                        className="inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-primary-foreground rounded-full text-sm font-bold uppercase tracking-widest h-14 px-10 transition-all duration-300 w-full sm:w-auto shadow-xl hover:shadow-2xl hover:-translate-y-1"
-                    >
-                        Shop Collection
+                    <Link href="/shop">
+                        <SpecularButton
+                            size="lg"
+                            radius={9999}
+                            tint="#ffffff"
+                            tintOpacity={0.15}
+                            blur={12}
+                            textColor="#1c1917"
+                            lineColor="#a8a29e"
+                            baseColor="#e7e5e4"
+                            intensity={0.6}
+                            thickness={0.8}
+                            speed={0.25}
+                            autoAnimate={true}
+                            className="font-sans text-sm font-bold tracking-widest uppercase w-full sm:w-auto shadow-lg hover:shadow-xl transition-shadow"
+                        >
+                            Shop Collection
+                        </SpecularButton>
                     </Link>
                 </motion.div>
             </motion.div>
