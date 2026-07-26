@@ -60,7 +60,7 @@ All product data is stored in a single file: `data/products.ts`.
 {
     id: "new-unique-id", // MUST be unique
     name: "Product Name",
-    price: 5000, // Price in PKR
+    price: 5000, // Final Sale Price in PKR
     category: "SKIN-CARE", // Options: "HEELS", "SANDALS", "FLATS", "HAIR-CARE", "SKIN-CARE"
     productLine: "organics", // Options: "footwear" or "organics"
     image: "/images/your-primary-image.jpg",
@@ -70,6 +70,38 @@ All product data is stored in a single file: `data/products.ts`.
     features: ["Feature 1", "Feature 2"],
 }
 ```
+
+#### Disabling or Removing an Out-of-Stock Shoe Size:
+If a specific shoe size sells out, you can easily remove it from the website so customers can't buy it.
+1. Open `data/products.ts`.
+2. Locate the product you want to modify.
+3. In the `sizes` array, simply delete or comment out the line corresponding to the out-of-stock size.
+
+For example, to remove size EU 38, change this:
+```typescript
+    sizes: [
+        { label: "EU 36", price: 5250 },
+        { label: "EU 37", price: 5250 },
+        { label: "EU 38", price: 5250 },
+        { label: "EU 39", price: 5250 }
+    ],
+```
+To this:
+```typescript
+    sizes: [
+        { label: "EU 36", price: 5250 },
+        { label: "EU 37", price: 5250 },
+        // { label: "EU 38", price: 5250 }, <-- Commented out! It will instantly disappear from the site.
+        { label: "EU 39", price: 5250 }
+    ],
+```
+
+#### How the Sale & Discount Pricing Works:
+The storefront is currently configured to show a **store-wide 24% discount sale** to drive conversions.
+- You do **not** need to manually calculate the original price.
+- In `data/products.ts`, the `price` you enter is the **final sale price** the customer pays (e.g., `4500`).
+- The website automatically calculates what the "original" higher price was (by adding ~32% back on top, which equals a 24% discount off the original) and displays it crossed out on the product cards.
+- If you want to change the global discount percentage, you can adjust the `discountPercent` and `originalPrice` math variables inside `components/shared/ProductCard.tsx` and `app/shop/[slug]/page.tsx`.
 
 ### 2. How to Manage Images
 All product images and site graphics live in the `public/` directory (specifically `public/images/`).
@@ -118,11 +150,12 @@ It perfectly formats this into a secure WhatsApp message and redirects the user 
 ---
 
 ## 💻 Tech Stack
-- **Framework:** Next.js 16
+- **Framework:** Next.js 16 (App Router)
 - **Styling:** Tailwind CSS
-- **Animations:** [Framer Motion]
+- **Animations:** Framer Motion & GSAP (GreenSock)
+- **3D & WebGL:** Three.js, React Three Fiber, & Custom WebGL Shaders (Fluid Physics)
 - **State Management:** Zustand (for the Shopping Cart)
-- **Icons:** Lucide React
+- **UI Components:** Shadcn UI, Lucide React, & Custom React Bits Integrations
 - **Image Optimization:** Sharp (High-performance compression for production images)
 
 ---
