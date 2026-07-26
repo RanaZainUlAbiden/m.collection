@@ -2,13 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ['image/webp'],
     minimumCacheTTL: 31536000,
-  },
-  experimental: {
-    turbo: {
-      root: process.cwd(),
-    },
   },
 };
 
