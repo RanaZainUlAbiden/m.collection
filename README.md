@@ -170,8 +170,8 @@ It perfectly formats this into a secure WhatsApp message and redirects the user 
 
 **To change the business number:**
 1. Open `app/checkout/page.tsx`.
-2. Locate the line: `const waNumber = "+12345678900";`
-3. Change `+12345678900` to your actual WhatsApp Business number.
+2. Locate the line: `const waNumber = "+923154322433";`
+3. Change `+923154322433` to your actual WhatsApp Business number.
 
 ---
 

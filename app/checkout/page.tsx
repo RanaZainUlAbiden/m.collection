@@ -37,7 +37,7 @@ export default function CheckoutPage() {
         }
 
         // WhatsApp Business Number
-        const waNumber = "+12345678900"; // Provided by user
+        const waNumber = "+923154322433"; // Provided by user
 
         // Construct the WhatsApp Message
         let message = `*NEW ORDER - Marjaan Collection*\n\n`;

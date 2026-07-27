@@ -50,9 +50,7 @@ export default function ContactPage() {
                                 <div>
                                     <h3 className="font-bold text-foreground mb-1">Phone / WhatsApp</h3>
                                     <p className="text-muted-foreground">
-                                        <a href="tel:+12345678900" className="hover:text-primary">+1 234 567 8900</a>
-                                        <br />
-                                        <a href="tel:+12345678900" className="hover:text-primary">+1 234 567 8900</a>
+                                        <a href="tel:+923154322433" className="hover:text-primary">+92 315 4322433</a>
                                     </p>
                                 </div>
                             </div>
@@ -89,7 +87,7 @@ export default function ContactPage() {
                         <p className="text-muted-foreground mb-8">
                             We handle all our customer support and inquiries directly through WhatsApp for faster, personalized service.
                         </p>
-                        <a href="https://wa.me/12345678900" target="_blank" rel="noreferrer" className="w-full">
+                        <a href="https://wa.me/923154322433" target="_blank" rel="noreferrer" className="w-full">
                             <Button size="lg" className="w-full rounded-full h-14 text-lg bg-green-500 hover:bg-green-600 text-white border-0">
                                 Send WhatsApp Message
                             </Button>
