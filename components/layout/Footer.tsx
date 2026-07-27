@@ -32,7 +32,7 @@ export function Footer() {
                         <nav className="flex flex-col gap-2 text-xs text-[#B5A5A0]">
                             <Link href="/shop" className="hover:text-secondary transition-colors w-fit">Shop Collection</Link>
                             <Link href="/about" className="hover:text-secondary transition-colors w-fit">About Us</Link>
-                            <Link href="/reviews" className="hover:text-secondary transition-colors w-fit">Customer Reviews</Link>
+                            <Link href="/testimonials" className="hover:text-secondary transition-colors w-fit">Testimonials</Link>
                             <Link href="/contact" className="hover:text-secondary transition-colors w-fit">Contact Us</Link>
                         </nav>
                     </div>

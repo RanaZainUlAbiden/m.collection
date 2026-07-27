@@ -20,8 +20,7 @@ export function FootwearProductDetailClient({ product }: { product: Product }) {
     const addToCart = useCartStore((state) => state.addToCart);
 
     const currentPrice = product.sizes?.find(s => s.label === selectedSize)?.price || product.price;
-    const originalPrice = Math.round(currentPrice * 1.32); // Mock 24% discount for UI
-    const discountPercent = 24;
+    const originalPrice = product.originalPrice;
     
     // Add mock colors if none exist in data
     const colors = product.colors || ["BEIGE", "PINK", "BLACK"];
@@ -119,9 +118,13 @@ export function FootwearProductDetailClient({ product }: { product: Product }) {
 
                         {/* Price */}
                         <div className="flex items-end gap-3 mb-1">
-                            <span className="text-sm text-muted-foreground line-through decoration-muted-foreground/50">PKR {originalPrice.toLocaleString()}</span>
+                            {originalPrice && (
+                                <span className="text-sm text-muted-foreground line-through decoration-muted-foreground/50">PKR {originalPrice.toLocaleString()}</span>
+                            )}
                             <span className="text-lg font-bold leading-none">PKR {currentPrice.toLocaleString()}</span>
-                            <span className="text-xs text-red-600 font-medium leading-none mb-[2px]">Save {discountPercent}%</span>
+                            {originalPrice && (
+                                <span className="text-xs text-red-600 font-medium leading-none mb-[2px]">Save {Math.round((1 - currentPrice / originalPrice) * 100)}%</span>
+                            )}
                         </div>
                         <p className="text-[10px] text-muted-foreground mb-4 font-medium">Shipping calculated at checkout.</p>
 

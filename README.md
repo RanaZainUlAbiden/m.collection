@@ -97,11 +97,37 @@ To this:
 ```
 
 #### How the Sale & Discount Pricing Works:
-The storefront is currently configured to show a **store-wide 24% discount sale** to drive conversions.
-- You do **not** need to manually calculate the original price.
-- In `data/products.ts`, the `price` you enter is the **final sale price** the customer pays (e.g., `4500`).
-- The website automatically calculates what the "original" higher price was (by adding ~32% back on top, which equals a 24% discount off the original) and displays it crossed out on the product cards.
-- If you want to change the global discount percentage, you can adjust the `discountPercent` and `originalPrice` math variables inside `components/shared/ProductCard.tsx` and `app/shop/[slug]/page.tsx`.
+You have full manual control over sales and discounts.
+
+To put a product on sale, you need to edit the product's entry in `data/products.ts`. 
+
+We use two fields to handle sales:
+- `originalPrice`: The old, higher price before the discount.
+- `price`: The current, active sale price that the customer will pay.
+
+**Normal Product (No Sale):**
+If a product is NOT on sale, only provide the `price` field:
+```typescript
+{
+  id: "p1",
+  name: "SPARKE SLIDES - Black",
+  price: 5250, // Normal price
+  // ... other fields
+}
+```
+
+**Product on Sale:**
+To put the product on sale, add the `originalPrice` field with the old price, and lower the `price` field to the new sale price:
+```typescript
+{
+  id: "p1",
+  name: "SPARKE SLIDES - Black",
+  originalPrice: 7000, // The old price (will be crossed out)
+  price: 5250,         // The new sale price
+  // ... other fields
+}
+```
+*Note: When `originalPrice` is provided, the website will automatically display a strikethrough over the old price and highlight the new sale price, calculating the percentage saved automatically.*
 
 ### 2. How to Manage Images
 All product images and site graphics live in the `public/` directory (specifically `public/images/`).

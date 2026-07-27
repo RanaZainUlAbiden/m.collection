@@ -24,8 +24,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
     const addToCart = useCartStore((state) => state.addToCart);
-    const originalPrice = Math.round(product.price * 1.32);
-    const discountPercent = 24;
+    const originalPrice = product.originalPrice;
     const secondImage = product.images?.[1] || product.image;
 
     const [showSizes, setShowSizes] = useState(false);
@@ -125,18 +124,28 @@ export function ProductCard({ product }: ProductCardProps) {
                 </h3>
                 
                 <div className="flex items-center justify-center gap-2 flex-wrap">
-                    <span className="text-[10px] text-muted-foreground line-through decoration-muted-foreground/50">
-                        PKR {originalPrice.toLocaleString()}
-                    </span>
-                    <span className="text-[11px] font-bold text-foreground">
-                        PKR {product.price.toLocaleString()}
-                    </span>
+                    {originalPrice ? (
+                        <>
+                            <span className="text-[10px] text-muted-foreground line-through decoration-muted-foreground/50">
+                                PKR {originalPrice.toLocaleString()}
+                            </span>
+                            <span className="text-[11px] font-bold text-foreground">
+                                PKR {product.price.toLocaleString()}
+                            </span>
+                        </>
+                    ) : (
+                        <span className="text-[11px] font-bold text-foreground">
+                            PKR {product.price.toLocaleString()}
+                        </span>
+                    )}
                 </div>
-                <div className="mt-1">
-                    <span className="text-[9px] font-bold text-[#8B0000] tracking-wider uppercase">
-                        Save {discountPercent}%
-                    </span>
-                </div>
+                {originalPrice && (
+                    <div className="mt-1">
+                        <span className="text-[9px] font-bold text-[#8B0000] tracking-wider uppercase">
+                            Save {Math.round((1 - product.price / originalPrice) * 100)}%
+                        </span>
+                    </div>
+                )}
             </div>
         </div>
     );

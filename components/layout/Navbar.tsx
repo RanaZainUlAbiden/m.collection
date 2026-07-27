@@ -90,7 +90,7 @@ export function Navbar() {
                                 { label: "Home", link: "/" },
                                 { label: "Shop", link: "/shop" },
                                 { label: "About", link: "/about" },
-                                { label: "Reviews", link: "/testimonials" },
+                                { label: "Testimonials", link: "/testimonials" },
                                 { label: "Contact", link: "/contact" }
                             ]}
                             displaySocials={false}
