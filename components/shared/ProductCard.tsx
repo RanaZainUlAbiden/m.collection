@@ -16,7 +16,7 @@ import { useState } from "react";
 import { useCartStore } from "@/store/useCartStore";
 import { toast } from "sonner";
 import { Product } from "@/data/products";
-import { BorderGlow } from "@/components/ui/border-glow";
+
 
 interface ProductCardProps {
     product: Product;
@@ -31,16 +31,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
     return (
         <div className="group flex flex-col relative font-sans">
-            <BorderGlow
-                className="mb-4"
-                backgroundColor="transparent"
-                glowColor="35 60 40" // Deeper, more saturated bronze for outer glow
-                glowIntensity={1.2} // Increased intensity
-                borderRadius={0}
-                glowRadius={25}
-                colors={['#A67C00', '#BF8F00', '#8C6900']} // Richer dark golds/bronzes
-            >
-                <div className="relative aspect-[4/5] overflow-hidden bg-card">
+                <div className="relative aspect-[4/5] overflow-hidden bg-card mb-4 border border-border/50">
                     
                     <Link href={`/shop/${product.id}`} className="block relative w-full h-full">
                         {/* Default Image */}
@@ -114,7 +105,7 @@ export function ProductCard({ product }: ProductCardProps) {
                         )}
                     </div>
                 </div>
-            </BorderGlow>
+
             
             <div className="flex flex-col text-center">
                 <h3 className="font-bold text-[11px] md:text-xs text-foreground uppercase tracking-widest mb-2 line-clamp-1 px-2">
