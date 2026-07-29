@@ -330,6 +330,41 @@ export const products: Product[] = [
         { label: "L", price: 3990 },
         { label: "XL", price: 3990 }
     ],
+  },
+  {
+    id: "p11",
+    careInstructions: ["Wipe clean with a damp cloth", "Avoid direct sunlight"],
+    name: "Dokht Heels",
+    shortDescription: "Elegant Dokht heels.",
+    price: 1900,
+    category: "HEELS",
+    productLine: "footwear",
+    image: "/images/dokht1.jpeg",
+    images: ["/images/dokht1.jpeg"],
+    description: "Beautiful Dokht heels designed for elegance and style. Perfect for special occasions or adding a touch of class to your everyday look.",
+    sizes: [
+        { label: "EU 37", price: 1900 },
+        { label: "EU 39", price: 1900 }
+    ],
+  },
+  {
+    id: "p12",
+    careInstructions: ["Wipe clean with a damp cloth", "Store in a cool dry place"],
+    name: "Dokht Slides",
+    shortDescription: "Comfortable Dokht slides.",
+    price: 1800,
+    category: "FLATS",
+    productLine: "footwear",
+    image: "/images/dokht2.jpeg",
+    images: ["/images/dokht2.jpeg"],
+    description: "Comfortable and casual Dokht slides designed for everyday wear. Slip into maximum comfort with a minimalist design.",
+    sizes: [
+        { label: "EU 36", price: 1800 },
+        { label: "EU 38", price: 1800 },
+        { label: "EU 39", price: 1800 },
+        { label: "EU 40", price: 1800 },
+        { label: "EU 41", price: 1800 }
+    ],
   }
 ];
 
