@@ -40,7 +40,7 @@ export function ProductCard({ product }: ProductCardProps) {
                             alt={product.name}
                             fill
                             sizes="(max-width: 768px) 50vw, 25vw"
-                            className={`transition-opacity duration-500 group-hover:opacity-0 absolute inset-0 z-0 ${product.productLine === 'organics' ? 'object-cover' : 'object-contain p-2 mix-blend-multiply'}`}
+                            className={`transition-opacity duration-500 md:group-hover:opacity-0 absolute inset-0 z-0 ${product.productLine === 'organics' ? 'object-cover' : 'object-contain p-2 mix-blend-multiply'}`}
                         />
                         {/* Hover Image */}
                         <Image
@@ -48,7 +48,7 @@ export function ProductCard({ product }: ProductCardProps) {
                             alt={`${product.name} alternate view`}
                             fill
                             sizes="(max-width: 768px) 50vw, 25vw"
-                            className={`transition-opacity duration-500 opacity-0 group-hover:opacity-100 absolute inset-0 z-10 ${product.productLine === 'organics' ? 'object-cover' : 'object-contain p-2 mix-blend-multiply'}`}
+                            className={`transition-opacity duration-500 opacity-0 md:group-hover:opacity-100 absolute inset-0 z-10 ${product.productLine === 'organics' ? 'object-cover' : 'object-contain p-2 mix-blend-multiply'}`}
                         />
                     </Link>
 
