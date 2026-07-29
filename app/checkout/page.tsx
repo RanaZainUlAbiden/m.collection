@@ -63,8 +63,8 @@ export default function CheckoutPage() {
         const encodedMessage = encodeURIComponent(message);
         const waUrl = `https://wa.me/${waNumber.replace('+', '')}?text=${encodedMessage}`;
 
-        // Optionally clear cart, though they might want to keep it until payment is confirmed
-        // clearCart(); 
+        // Clear the cart when the WhatsApp window opens
+        clearCart(); 
         
         window.open(waUrl, '_blank');
     };
