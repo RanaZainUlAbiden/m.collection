@@ -73,10 +73,8 @@ const fragmentShaderBg = `
     
     // Animate coordinates
     vec2 pos = vec2(st * 1.5);
-    float noise = snoise(pos + uTime * 0.105);
-    
-    // Smooth waves
-    float n = snoise(pos + noise * 1.5 + uTime * 0.07);
+    // Use a single noise calculation to drastically reduce GPU load
+    float n = snoise(pos + uTime * 0.105);
     
     // Mix brand colors (peach/cream and light brown)
     vec3 color = mix(uColor1, uColor2, n * 0.5 + 0.5);
@@ -131,7 +129,7 @@ export function HeroSection3D() {
 
             {/* 3D Liquid Silk Background */}
             <div className="absolute inset-0 z-0 opacity-80 mix-blend-multiply">
-                <Canvas camera={{ position: [0, 0, 1] }} gl={{ antialias: true }}>
+                <Canvas camera={{ position: [0, 0, 1] }} gl={{ antialias: false, powerPreference: "high-performance" }} dpr={[1, 1.5]}>
                     <LiquidBackground />
                 </Canvas>
             </div>
