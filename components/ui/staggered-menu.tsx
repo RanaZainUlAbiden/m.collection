@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
 
 export interface StaggeredMenuItem {
   label: string;
@@ -107,11 +108,19 @@ export const StaggeredMenu = ({
       <header className="staggered-menu-header relative z-50">
         <button
           ref={toggleBtnRef}
-          className="sm-toggle px-4 py-2 z-50 relative flex items-center justify-center font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs transition-colors hover:text-primary"
+          className="sm-toggle p-2 sm:px-4 sm:py-2 z-50 relative flex items-center justify-center font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs transition-colors hover:text-primary"
           onClick={toggleMenu}
           style={{ color: open && changeMenuColorOnOpen ? openMenuButtonColor : menuButtonColor }}
+          aria-label={open ? 'Close menu' : 'Open menu'}
         >
-          {open ? 'CLOSE' : 'MENU'}
+          {/* Mobile Icons */}
+          <span className="sm:hidden">
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </span>
+          {/* Desktop Text */}
+          <span className="hidden sm:block">
+            {open ? 'CLOSE' : 'MENU'}
+          </span>
         </button>
       </header>
 
