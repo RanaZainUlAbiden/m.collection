@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SpecularButton from "@/components/ui/SpecularButton";
-import SplashCursor from "@/components/ui/SplashCursor";
+
 import Image from "next/image";
 import * as THREE from "three";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
@@ -127,7 +127,7 @@ export function HeroSection3D() {
             className="relative min-h-[100dvh] w-full flex items-center pt-28 md:pt-36 pb-12 lg:pt-28 lg:pb-[25px] -mt-[15px] overflow-hidden"
             aria-label="MJR Collection Hero"
         >
-            <SplashCursor />
+
 
             {/* 3D Liquid Silk Background */}
             <div className="absolute inset-0 z-0 opacity-80 mix-blend-multiply">
