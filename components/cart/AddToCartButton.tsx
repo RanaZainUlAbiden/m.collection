@@ -34,17 +34,18 @@ export function AddToCartButton({ product, className }: AddToCartButtonProps) {
         }
     };
 
-    const handleSizeSelect = (size: string) => {
-        addToCart(product, 1, size);
+    const handleSizeSelect = (size: string, price?: number) => {
+        addToCart(product, 1, size, undefined, price);
         toast.success(`${product.name} (Size ${size}) added to your basket!`);
         setOpen(false);
     };
 
-    const isFootwear = product.productLine === 'footwear' && product.sizes && product.sizes.length > 0;
+    const isApparel = (product.productLine === 'footwear' || product.productLine === 'clothing') && product.sizes && product.sizes.length > 0;
+    const hasVariants = product.variants && product.variants.length > 0;
 
     const buttonClassName = className || "rounded-full w-10 h-10 p-0 bg-primary hover:bg-primary/90 text-white hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md flex items-center justify-center";
 
-    if (isFootwear) {
+    if (isApparel || hasVariants) {
         return (
             <DropdownMenu open={open} onOpenChange={setOpen}>
                 <DropdownMenuTrigger 
@@ -58,18 +59,33 @@ export function AddToCartButton({ product, className }: AddToCartButtonProps) {
                     <DropdownMenuLabel className="text-xs uppercase tracking-widest text-muted-foreground text-center">Select Size</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <div className="grid grid-cols-3 gap-2 p-2">
-                        {product.sizes?.map(size => (
-                            <DropdownMenuItem 
-                                key={size.label}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleSizeSelect(size.label);
-                                }}
-                                className="flex items-center justify-center font-bold cursor-pointer border border-border hover:bg-black hover:text-white transition-colors"
-                            >
-                                {size.label}
-                            </DropdownMenuItem>
-                        ))}
+                        {product.variants ? (
+                            product.variants.map(v => (
+                                <DropdownMenuItem 
+                                    key={v.size}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleSizeSelect(v.size, v.price);
+                                    }}
+                                    className="flex items-center justify-center font-bold cursor-pointer border border-border hover:bg-black hover:text-white transition-colors text-xs"
+                                >
+                                    {v.size}
+                                </DropdownMenuItem>
+                            ))
+                        ) : (
+                            product.sizes?.map(size => (
+                                <DropdownMenuItem 
+                                    key={size.label}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleSizeSelect(size.label, size.price);
+                                    }}
+                                    className="flex items-center justify-center font-bold cursor-pointer border border-border hover:bg-black hover:text-white transition-colors text-xs"
+                                >
+                                    {size.label.replace(/[^0-9A-Za-z]/g, '')}
+                                </DropdownMenuItem>
+                            ))
+                        )}
                     </div>
                 </DropdownMenuContent>
             </DropdownMenu>

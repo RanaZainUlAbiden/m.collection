@@ -40,7 +40,7 @@ export function ProductCard({ product }: ProductCardProps) {
                             alt={product.name}
                             fill
                             sizes="(max-width: 768px) 50vw, 25vw"
-                            className={`transition-opacity duration-500 md:group-hover:opacity-0 absolute inset-0 z-0 ${product.productLine === 'organics' ? 'object-cover' : 'object-contain p-2 mix-blend-multiply'}`}
+                            className={`transition-opacity duration-500 md:group-hover:opacity-0 absolute inset-0 z-0 ${product.productLine !== 'footwear' ? 'object-cover' : 'object-contain p-2 mix-blend-multiply'}`}
                         />
                         {/* Hover Image */}
                         <Image
@@ -48,7 +48,7 @@ export function ProductCard({ product }: ProductCardProps) {
                             alt={`${product.name} alternate view`}
                             fill
                             sizes="(max-width: 768px) 50vw, 25vw"
-                            className={`transition-opacity duration-500 opacity-0 md:group-hover:opacity-100 absolute inset-0 z-10 ${product.productLine === 'organics' ? 'object-cover' : 'object-contain p-2 mix-blend-multiply'}`}
+                            className={`transition-opacity duration-500 opacity-0 md:group-hover:opacity-100 absolute inset-0 z-10 ${product.productLine !== 'footwear' ? 'object-cover' : 'object-contain p-2 mix-blend-multiply'}`}
                         />
                     </Link>
 
@@ -57,7 +57,9 @@ export function ProductCard({ product }: ProductCardProps) {
                         {showSizes ? (
                             <div className="flex flex-col gap-2 bg-white/95 border border-border p-3 shadow-xl w-full animate-in fade-in slide-in-from-bottom-2 duration-300">
                                 <div className="flex justify-between items-center mb-1">
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-foreground">Select Size</span>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-foreground">
+                                        {product.productLine === 'organics' ? 'Select Weight' : 'Select Size'}
+                                    </span>
                                     <button 
                                         onClick={(e) => { e.preventDefault(); setShowSizes(false); }} 
                                         className="text-[10px] text-muted-foreground hover:text-black underline underline-offset-2"
@@ -66,20 +68,37 @@ export function ProductCard({ product }: ProductCardProps) {
                                     </button>
                                 </div>
                                 <div className="flex gap-1.5 flex-wrap justify-start">
-                                    {product.sizes?.map(size => (
-                                        <button 
-                                            key={size.label}
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                addToCart(product, 1, size.label);
-                                                toast.success(`${product.name} (Size ${size.label}) added!`);
-                                                setShowSizes(false);
-                                            }}
-                                            className="w-8 h-8 flex items-center justify-center border border-border text-[11px] font-bold text-foreground hover:bg-black hover:text-white transition-colors bg-white shadow-sm"
-                                        >
-                                            {size.label}
-                                        </button>
-                                    ))}
+                                    {product.variants ? (
+                                        product.variants.map(v => (
+                                            <button 
+                                                key={v.size}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    addToCart(product, 1, v.size, undefined, v.price);
+                                                    toast.success(`${product.name} (${v.size}) added!`);
+                                                    setShowSizes(false);
+                                                }}
+                                                className="w-auto px-2 min-w-8 h-8 flex items-center justify-center border border-border text-[11px] font-bold text-foreground hover:bg-black hover:text-white transition-colors bg-white shadow-sm"
+                                            >
+                                                {v.size}
+                                            </button>
+                                        ))
+                                    ) : (
+                                        product.sizes?.map(size => (
+                                            <button 
+                                                key={size.label}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    addToCart(product, 1, size.label, undefined, size.price);
+                                                    toast.success(`${product.name} (Size ${size.label}) added!`);
+                                                    setShowSizes(false);
+                                                }}
+                                                className="w-8 h-8 flex items-center justify-center border border-border text-[11px] font-bold text-foreground hover:bg-black hover:text-white transition-colors bg-white shadow-sm"
+                                            >
+                                                {size.label.replace(/[^0-9A-Za-z]/g, '')}
+                                            </button>
+                                        ))
+                                    )}
                                 </div>
                             </div>
                         ) : (
@@ -87,7 +106,9 @@ export function ProductCard({ product }: ProductCardProps) {
                                 <button
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        if (product.productLine === 'footwear' && product.sizes && product.sizes.length > 0) {
+                                        const isApparel = (product.productLine === 'footwear' || product.productLine === 'clothing') && product.sizes && product.sizes.length > 0;
+                                        const hasVariants = product.variants && product.variants.length > 0;
+                                        if (isApparel || hasVariants) {
                                             setShowSizes(true);
                                         } else {
                                             addToCart(product, 1);
@@ -96,7 +117,7 @@ export function ProductCard({ product }: ProductCardProps) {
                                     }}
                                     className="flex-1 bg-black text-white text-center text-[9px] font-bold uppercase tracking-widest py-2.5 border border-black hover:bg-white hover:text-black transition-colors shadow-md"
                                 >
-                                    {product.productLine === 'footwear' ? 'Quick Add' : 'Add to Cart'}
+                                    Quick Add
                                 </button>
                                 <Link href={`/shop/${product.id}`} className="flex-1 bg-white/95 text-black text-center text-[9px] font-bold uppercase tracking-widest py-2.5 border border-border shadow-md hover:bg-black hover:text-white transition-colors flex items-center justify-center">
                                     View Details

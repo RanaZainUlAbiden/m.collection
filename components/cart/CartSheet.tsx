@@ -81,7 +81,7 @@ export function CartSheet({ children }: CartSheetProps) {
                                         <div>
                                             <h4 className="font-bold text-sm text-foreground line-clamp-2 leading-tight">{item.product.name || 'Unnamed Product'}</h4>
                                             <p className="text-xs text-muted-foreground mt-1">
-                                                PKR {item.product.price}
+                                                PKR {item.price}
                                                 {item.size && ` | Size: ${item.size}`}
                                                 {item.color && ` | Color: ${item.color}`}
                                             </p>
@@ -110,7 +110,7 @@ export function CartSheet({ children }: CartSheetProps) {
                                             </button>
                                         </div>
                                         <p className="font-bold text-sm text-foreground">
-                                            PKR {item.product.price * item.quantity}
+                                            PKR {item.price * item.quantity}
                                         </p>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@ export function CartSheet({ children }: CartSheetProps) {
                             <span className="text-base text-muted-foreground">Subtotal</span>
                             <span className="text-2xl font-bold text-primary">PKR {getCartTotal()}</span>
                         </div>
-                        <SheetClose render={
+                        <SheetClose nativeButton={false} render={
                             <Link href="/checkout" className="w-full h-12 text-sm font-bold rounded-full bg-primary text-white hover:bg-primary/90 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all">
                                 Proceed to Checkout
                                 <ArrowRight className="w-4 h-4" />

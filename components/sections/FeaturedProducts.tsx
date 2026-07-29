@@ -42,7 +42,7 @@ export function FeaturedProducts() {
                             Top Picks
                         </span>
                         <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground">
-                            Bestselling <span className="text-primary">Heels</span>
+                            Bestselling <span className="text-primary">Products</span>
                         </h2>
                     </div>
                     <Link href="/shop" className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors">

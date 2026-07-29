@@ -24,7 +24,12 @@ interface ShopClientProps {
     initialProducts: Product[];
 }
 
-const categories = ["ALL", "HEELS", "SANDALS", "FLATS", "HAIR-CARE", "SKIN-CARE"];
+const productLines = ["ALL", "FOOTWEAR", "CLOTHING", "ORGANICS"];
+const subCategories: Record<string, string[]> = {
+    "FOOTWEAR": ["ALL", "HEELS", "SANDALS", "FLATS"],
+    "CLOTHING": ["ALL", "SHIRTS", "PANTS", "JEANS"],
+    "ORGANICS": ["ALL", "HAIR-CARE", "SKIN-CARE"]
+};
 
 function ProductCardSkeleton() {
     return (
@@ -39,11 +44,11 @@ function ProductCardSkeleton() {
 }
 
 export function ShopClient({ initialProducts }: ShopClientProps) {
+    const [selectedLine, setSelectedLine] = useState("ALL");
     const [selectedCategory, setSelectedCategory] = useState("ALL");
     const [sortBy, setSortBy] = useState("Featured");
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
-    const addToCart = useCartStore((state) => state.addToCart);
 
     const PRODUCTS_PER_PAGE = 20;
 
@@ -55,9 +60,15 @@ export function ShopClient({ initialProducts }: ShopClientProps) {
             setIsLoading(false);
         }, 400); // Small artificial delay to show skeletons during filter change
         return () => clearTimeout(timer);
-    }, [selectedCategory, sortBy]);
+    }, [selectedLine, selectedCategory, sortBy]);
 
     let filteredProducts = [...initialProducts];
+
+    if (selectedLine !== "ALL") {
+        filteredProducts = filteredProducts.filter(p => 
+            p.productLine.toUpperCase() === selectedLine
+        );
+    }
 
     if (selectedCategory !== "ALL") {
         filteredProducts = filteredProducts.filter(p => 
@@ -79,20 +90,45 @@ export function ShopClient({ initialProducts }: ShopClientProps) {
             <div className="flex flex-col gap-8">
                 {/* Filters */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 py-4 border-b border-border/40">
-                    <div className="flex items-center gap-6 flex-wrap">
-                        {categories.map(cat => (
-                            <button
-                                key={cat}
-                                onClick={() => setSelectedCategory(cat)}
-                                className={`text-[11px] tracking-[0.2em] uppercase font-bold transition-all relative py-2 ${
-                                    selectedCategory === cat
-                                        ? "text-foreground after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground"
-                                        : "text-muted-foreground hover:text-foreground"
-                                }`}
-                            >
-                                {cat}
-                            </button>
-                        ))}
+                    <div className="flex flex-col gap-4">
+                        {/* Tier 1: Product Lines */}
+                        <div className="flex items-center gap-6 flex-wrap">
+                            {productLines.map(line => (
+                                <button
+                                    key={line}
+                                    onClick={() => {
+                                        setSelectedLine(line);
+                                        setSelectedCategory("ALL"); // Reset subcategory when changing line
+                                    }}
+                                    className={`text-[12px] tracking-[0.2em] uppercase font-bold transition-all relative py-2 ${
+                                        selectedLine === line
+                                            ? "text-foreground after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-foreground"
+                                            : "text-muted-foreground hover:text-foreground"
+                                    }`}
+                                >
+                                    {line}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Tier 2: Sub-Categories */}
+                        {selectedLine !== "ALL" && subCategories[selectedLine] && (
+                            <div className="flex items-center gap-4 flex-wrap mt-2">
+                                {subCategories[selectedLine].map(cat => (
+                                    <button
+                                        key={cat}
+                                        onClick={() => setSelectedCategory(cat)}
+                                        className={`text-[10px] tracking-[0.15em] uppercase font-semibold transition-all px-3 py-1.5 border rounded-full ${
+                                            selectedCategory === cat
+                                                ? "bg-foreground text-background border-foreground"
+                                                : "border-border/60 text-muted-foreground hover:border-foreground/50 hover:text-foreground"
+                                        }`}
+                                    >
+                                        {cat}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
                     <div className="flex items-center gap-4">
                         <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{filteredProducts.length} PRODUCTS</span>
@@ -139,7 +175,7 @@ export function ShopClient({ initialProducts }: ShopClientProps) {
                     </div>
                 ) : (
                     <div 
-                        key={selectedCategory + sortBy + currentPage}
+                        key={selectedLine + selectedCategory + sortBy + currentPage}
                         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 md:gap-y-12"
                     >
                         {paginatedProducts.map((product) => (

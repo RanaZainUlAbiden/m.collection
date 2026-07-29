@@ -66,7 +66,7 @@ export function SearchModal({ children }: { children?: React.ReactNode }) {
                         <div className="flex flex-col gap-2">
                             {filteredProducts.map(product => (
                                 <div key={product.id} className="flex gap-4 items-center p-3 rounded-md border border-border/40 shadow-sm hover:border-primary/30 transition-colors group">
-                                    <Link href={product.productLine === 'organics' ? `/shop/organics/${product.id}` : `/shop/${product.id}`} onClick={() => setOpen(false)} className="w-20 h-20 relative rounded-md overflow-hidden flex-shrink-0">
+                                    <Link href={`/shop/${product.id}`} onClick={() => setOpen(false)} className="w-20 h-20 relative rounded-md overflow-hidden flex-shrink-0">
                                         <Image
                                             src={product.image}
                                             alt={product.name}
@@ -75,7 +75,7 @@ export function SearchModal({ children }: { children?: React.ReactNode }) {
                                         />
                                     </Link>
                                     <div className="flex-1 min-w-0">
-                                        <Link href={product.productLine === 'organics' ? `/shop/organics/${product.id}` : `/shop/${product.id}`} onClick={() => setOpen(false)} className="hover:text-primary transition-colors block">
+                                        <Link href={`/shop/${product.id}`} onClick={() => setOpen(false)} className="hover:text-primary transition-colors block">
                                             <h4 className="font-bold text-foreground truncate">{product.name}</h4>
                                             <p className="text-xs text-muted-foreground truncate">{product.shortDescription}</p>
                                         </Link>

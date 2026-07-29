@@ -2,157 +2,120 @@
 
 Welcome to the Marjaan Collection codebase! This is a modern, blazing-fast, server-side rendered e-commerce storefront built with Next.js, React, Tailwind CSS, and Framer Motion. 
 
-This platform supports two main product lines:
-1. **Premium Footwear**
-2. **Holistic Organic Care**
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v18 or higher recommended)
-- npm (Node Package Manager)
-
-### Installation & Running Locally
-
-1. **Install dependencies:**
-   Open your terminal in the project directory and run:
-   ```bash
-   npm install
-   ```
-
-2. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. The site will automatically reload when you make edits to any files!
-
-3. **Build for Production:**
-   When you are ready to deploy the site to a live server (like Vercel, Netlify, or a VPS), run:
-   ```bash
-   npm run build
-   ```
-   This will create an optimized, static production build.
+This platform supports three main product lines:
+1. **Premium Footwear** (Static pricing by size)
+2. **Clothing** (Static pricing by size)
+3. **Holistic Organic Care** (Dynamic pricing by weight/variant)
 
 ---
 
-## 🛍️ Content Management Guide (No Database Required!)
+## 🛍️ Store Management Guide (No Database Required!)
 
-This project is designed to be as fast and easy to maintain as possible. You do not need to log into a complicated database to add new products or reviews. Everything is powered by local data arrays.
+This project is designed to be incredibly fast and easy to maintain. You do not need to log into a complicated database to add new products or manage your store. Everything is powered by a local file!
 
-### 1. How to Modify or Add Products
-
+### 1. The Core Data File
 All product data is stored in a single file: `data/products.ts`.
+This is your **source of truth**. Any changes made to this file instantly update the entire website (shop pages, product details, cart, etc).
 
-#### Modifying an existing product:
-1. Open `data/products.ts`.
-2. Find the product you want to change in the list.
-3. Edit the properties (e.g., change the `price`, edit the `name`, or change the `badge` from "New Arrival" to "Best Seller").
-4. Save the file. The changes will instantly appear on the website!
-
-#### Adding a new product:
+### 2. How to Add a New Product
+To add a new product:
 1. Open `data/products.ts`.
 2. Scroll to the bottom of the `products` array.
 3. Copy an existing product block and paste it below.
-4. Give it a **unique ID**.
-5. Fill in the new details. Here is the template:
+4. Fill in the new details based on the template below:
 
 ```typescript
 {
-    id: "new-unique-id", // MUST be unique
+    id: "new-unique-id", // MUST be unique (e.g. p11, c3, o4)
     name: "Product Name",
-    price: 5000, // Final Sale Price in PKR
-    category: "SKIN-CARE", // Options: "HEELS", "SANDALS", "FLATS", "HAIR-CARE", "SKIN-CARE"
-    productLine: "organics", // Options: "footwear" or "organics"
+    shortDescription: "A very brief 1-sentence summary.",
+    description: "Your full product description goes here. It can be long.",
+    price: 5000, // Default Base Price in PKR
+    category: "HEELS", // e.g., "HEELS", "SANDALS", "FLATS", "HAIR-CARE", "SKIN-CARE", "JEANS", "SHIRTS"
+    productLine: "footwear", // CRITICAL: Choose "footwear" | "organics" | "clothing"
     image: "/images/your-primary-image.jpg",
     images: ["/images/your-primary-image.jpg", "/images/alternate-image.jpg"],
-    description: "Your product description goes here.",
-    badge: "New Arrival", // Optional: "New Arrival" or "Best Seller"
-    features: ["Feature 1", "Feature 2"],
+    
+    // --- OPTIONAL FIELDS ---
+    badge: "New Arrival", // E.g. "New Arrival" or "Best Seller". Used to feature products on homepage!
+    colors: ["Beige", "Pink"], // Array of color names. This automatically shows the color picker on the UI.
+    careInstructions: ["Wipe clean", "Store in a cool dry place"], // Array of strings. Renders an accordion section.
+    
+    // --- SIZING FOR FOOTWEAR & CLOTHING ---
+    // If the product has static prices regardless of size, use 'sizes':
+    sizes: [
+        { label: "EU 36", price: 5000 },
+        { label: "EU 37", price: 5000 }
+        // For Jeans: { label: "W30 L32", price: 6000 }
+        // For Tops: { label: "S", price: 3000 }
+    ],
+
+    // --- SIZING FOR ORGANICS ---
+    // If the price changes based on weight/size, use 'variants' instead:
+    // variants: [
+    //     { size: "50g", price: 1200 },
+    //     { size: "35g", price: 800 }
+    // ],
+    // howToUse: ["Apply to skin", "Leave for 10 mins"], // Specific to organics
+    // ingredients: ["Aloe Vera", "Vitamin E"], // Specific to organics
 }
 ```
 
-#### Disabling or Removing an Out-of-Stock Shoe Size:
-If a specific shoe size sells out, you can easily remove it from the website so customers can't buy it.
+### 3. How to Feature a Product on the Homepage (Top Picks)
+The **Bestselling Products** section on the homepage automatically selects up to 4 products based on their badges.
+To force a product to appear on the homepage, simply give it a badge!
+Add or modify the `badge` property in the product object:
+`badge: "Best Seller"` or `badge: "New Arrival"`
+
+### 4. How to Mark an Item Out of Stock
+If a specific size sells out, you can easily hide it from the website so customers can't buy it.
 1. Open `data/products.ts`.
 2. Locate the product you want to modify.
-3. In the `sizes` array, simply delete or comment out the line corresponding to the out-of-stock size.
+3. In the `sizes` array, simply comment out (or delete) the line corresponding to the out-of-stock size by putting `//` in front of it.
 
-For example, to remove size EU 38, change this:
 ```typescript
     sizes: [
         { label: "EU 36", price: 5250 },
         { label: "EU 37", price: 5250 },
-        { label: "EU 38", price: 5250 },
-        { label: "EU 39", price: 5250 }
-    ],
-```
-To this:
-```typescript
-    sizes: [
-        { label: "EU 36", price: 5250 },
-        { label: "EU 37", price: 5250 },
-        // { label: "EU 38", price: 5250 }, <-- Commented out! It will instantly disappear from the site.
+        // { label: "EU 38", price: 5250 }, <-- Commented out! It instantly disappears from the site.
         { label: "EU 39", price: 5250 }
     ],
 ```
 
-#### How the Sale & Discount Pricing Works:
+### 5. How to Put a Product on Sale (Discounts)
 You have full manual control over sales and discounts.
-
-To put a product on sale, you need to edit the product's entry in `data/products.ts`. 
-
-We use two fields to handle sales:
+To put a product on sale, edit the product's entry in `data/products.ts` and use two fields:
 - `originalPrice`: The old, higher price before the discount.
 - `price`: The current, active sale price that the customer will pay.
 
-**Normal Product (No Sale):**
-If a product is NOT on sale, only provide the `price` field:
 ```typescript
 {
   id: "p1",
   name: "SPARKE SLIDES - Black",
-  price: 5250, // Normal price
-  // ... other fields
-}
-```
-
-**Product on Sale:**
-To put the product on sale, add the `originalPrice` field with the old price, and lower the `price` field to the new sale price:
-```typescript
-{
-  id: "p1",
-  name: "SPARKE SLIDES - Black",
-  originalPrice: 7000, // The old price (will be crossed out)
+  originalPrice: 7000, // The old price (will be automatically crossed out)
   price: 5250,         // The new sale price
-  // ... other fields
+  // ...
 }
 ```
-*Note: When `originalPrice` is provided, the website will automatically display a strikethrough over the old price and highlight the new sale price, calculating the percentage saved automatically.*
+*The website will automatically calculate the % saved and display a bright red "Save X%" tag on the product!*
 
-### 2. How to Manage Images
-All product images and site graphics live in the `public/` directory (specifically `public/images/`).
-
-To add a new image:
+### 6. How to Manage Images
+All product images live in the `public/images/` directory.
 1. Place your `.jpg` or `.png` file into the `public/images/` folder.
 2. In your `data/products.ts` file, reference the image simply by starting with a slash: `"/images/my-new-image.jpg"`.
-*Note: Do not include "public" in the path name inside your code.*
+*Note: Do not type "public" in the path name inside your code.*
 
-### 3. How to Modify or Add Customer Testimonials
-Testimonials are just as easy to edit as products. They are stored in `data/testimonials.ts`.
-
-#### Adding a new testimonial:
-1. Open `data/testimonials.ts`.
-2. Add a new block to the array:
-
+### 7. How to Modify Customer Testimonials
+Testimonials are stored in `data/testimonials.ts`. Add a new block to the array to display a new review:
 ```typescript
 {
     id: "unique-review-id",
     customerName: "Ali Raza",
     location: "Lahore",
     rating: 5,
-    text: "The quality of the footwear is amazing and the organic serum smells incredible!",
+    text: "The quality of the footwear is amazing!",
     date: "July 2026",
-    productBought: "Leather Loafers & Face Serum"
+    productBought: "Leather Loafers"
 }
 ```
 
@@ -160,13 +123,8 @@ Testimonials are just as easy to edit as products. They are stored in `data/test
 
 ## 📱 WhatsApp Checkout Integration
 
-This store utilizes a "Cart to WhatsApp" flow instead of a traditional credit card gateway. 
-When a customer clicks "Place Order via WhatsApp", the code in `app/checkout/page.tsx` dynamically gathers:
-- Customer details (Name, Phone, Address, City)
-- Every single item in the cart (Name, Size, Qty, Price)
-- The calculated Subtotal & Total
-
-It perfectly formats this into a secure WhatsApp message and redirects the user to their WhatsApp app to send it directly to your business number!
+This store utilizes a highly optimized **"Cart to WhatsApp"** flow. 
+When a customer clicks "Place Order via WhatsApp", the code in `app/checkout/page.tsx` dynamically gathers the customer details, order summary, and calculated totals, formats it into a secure WhatsApp message, and redirects the user to send it directly to your business number!
 
 **To change the business number:**
 1. Open `app/checkout/page.tsx`.
@@ -175,16 +133,30 @@ It perfectly formats this into a secure WhatsApp message and redirects the user 
 
 ---
 
+## 🚀 Technical Setup (For Developers)
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) with your browser.
+
+3. **Build for Production:**
+   ```bash
+   npm run build
+   ```
+
 ## 💻 Tech Stack
 - **Framework:** Next.js 16 (App Router)
 - **Styling:** Tailwind CSS
-- **Animations:** Framer Motion & GSAP (GreenSock)
-- **3D & WebGL:** Three.js, React Three Fiber, & Custom WebGL Shaders (Fluid Physics)
-- **State Management:** Zustand (for the Shopping Cart)
-- **UI Components:** Shadcn UI, Lucide React, & Custom React Bits Integrations
-- **Image Optimization:** Sharp (High-performance compression for production images)
+- **Animations:** Framer Motion & GSAP
+- **State Management:** Zustand
+- **UI Components:** Shadcn UI, Lucide React
 
 ---
-
-## 👨‍💻 Credits
 **Built by Haseeb** | [muhammadhaseebhassan23@gmail.com](mailto:muhammadhaseebhassan23@gmail.com)

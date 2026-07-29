@@ -53,12 +53,10 @@ export default function CheckoutPage() {
         message += `\n*Order Summary:*\n`;
         items.forEach(item => {
             message += `• ${item.product.name}\n`;
-            message += `  Qty: ${item.quantity} | Size: ${item.size || 'N/A'} | Rs. ${item.product.price}/pc\n`;
-            message += `  Subtotal: Rs. ${item.product.price * item.quantity}\n`;
+            message += `  Qty: ${item.quantity} | Size: ${item.size || 'N/A'} | Rs. ${item.price}/pc\n`;
+            message += `  Subtotal: Rs. ${item.price * item.quantity}\n`;
         });
-        
-        message += `\n*Total Amount:* Rs. ${getCartTotal()}\n`;
-        message += `\n_I will send the payment screenshot shortly to confirm this order._`;
+        message += `\n*Total Amount (before shipping):* Rs. ${getCartTotal()}\n`;
 
         const encodedMessage = encodeURIComponent(message);
         const waUrl = `https://wa.me/${waNumber.replace('+', '')}?text=${encodedMessage}`;
@@ -191,7 +189,7 @@ export default function CheckoutPage() {
                                                 <p className="text-xs font-medium">Qty: {item.quantity}</p>
                                             </div>
                                             <div className="font-bold text-foreground">
-                                                Rs. {item.product.price * item.quantity}
+                                                Rs. {item.price * item.quantity}
                                             </div>
                                         </div>
                                     ))}

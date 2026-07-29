@@ -12,14 +12,17 @@ import { toast } from "sonner";
 
 export function FootwearProductDetailClient({ product }: { product: Product }) {
     const [selectedImage, setSelectedImage] = useState(0);
-    const [selectedSize, setSelectedSize] = useState(product.sizes?.[0]?.label || "");
+    const defaultSize = product.variants?.[0]?.size || product.sizes?.[0]?.label || "";
+    const [selectedSize, setSelectedSize] = useState(defaultSize);
     const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || "BLACK");
     const [quantity, setQuantity] = useState(1);
     const [zoomed, setZoomed] = useState(false);
     
     const addToCart = useCartStore((state) => state.addToCart);
 
-    const currentPrice = product.sizes?.find(s => s.label === selectedSize)?.price || product.price;
+    const variantPrice = product.variants?.find(v => v.size === selectedSize)?.price;
+    const sizePrice = product.sizes?.find(s => s.label === selectedSize)?.price;
+    const currentPrice = variantPrice || sizePrice || product.price;
     const originalPrice = product.originalPrice;
     
     // Add mock colors if none exist in data
@@ -28,7 +31,7 @@ export function FootwearProductDetailClient({ product }: { product: Product }) {
     const images = product.images || [product.image, product.image, product.image, product.image];
 
     const handleAddToCart = () => {
-        addToCart(product, quantity, selectedSize, selectedColor);
+        addToCart(product, quantity, selectedSize, selectedColor, currentPrice);
         toast.success(`${product.name} added to your basket!`);
     };
 
@@ -126,39 +129,56 @@ export function FootwearProductDetailClient({ product }: { product: Product }) {
                                 <span className="text-xs text-red-600 font-medium leading-none mb-[2px]">Save {Math.round((1 - currentPrice / originalPrice) * 100)}%</span>
                             )}
                         </div>
-                        <p className="text-[10px] text-muted-foreground mb-4 font-medium">Shipping calculated at checkout.</p>
 
 
 
-                        {/* Size Selector */}
-                        {product.productLine === 'footwear' && product.sizes && product.sizes.length > 0 && (
+                        {/* Size/Variant Selector */}
+                        {(product.sizes?.length || product.variants?.length) ? (
                             <div className="mb-6">
                                 <div className="flex items-center gap-2 mb-3">
-                                    <span className="text-[10px] uppercase tracking-[0.2em] font-medium">Size</span>
+                                    <span className="text-[10px] uppercase tracking-[0.2em] font-medium">
+                                        {product.productLine === 'organics' ? 'Size / Weight' : 'Size'}
+                                    </span>
                                 </div>
-                                <div className="flex flex-wrap gap-0">
-                                    {product.sizes?.map((size) => {
-                                        const displaySize = size.label.replace(/[^0-9]/g, '');
-                                        return (
+                                <div className="flex flex-wrap gap-2">
+                                    {product.variants ? (
+                                        product.variants.map((v) => (
                                             <button
-                                                key={size.label}
-                                                onClick={() => setSelectedSize(size.label)}
-                                                className={`w-12 h-10 text-xs flex items-center justify-center border transition-all ${
-                                                    selectedSize === size.label
+                                                key={v.size}
+                                                onClick={() => setSelectedSize(v.size)}
+                                                className={`h-10 px-4 text-xs flex items-center justify-center border transition-all ${
+                                                    selectedSize === v.size
                                                         ? "border-black border-2 font-bold z-10"
-                                                        : "border-border/50 text-muted-foreground hover:border-black/50 -ml-[1px]"
+                                                        : "border-border/50 text-muted-foreground hover:border-black/50"
                                                 }`}
                                             >
-                                                {displaySize}
+                                                {v.size}
                                             </button>
-                                        );
-                                    })}
+                                        ))
+                                    ) : (
+                                        product.sizes?.map((size) => {
+                                            const displaySize = size.label.replace(/[^0-9A-Za-z]/g, '');
+                                            return (
+                                                <button
+                                                    key={size.label}
+                                                    onClick={() => setSelectedSize(size.label)}
+                                                    className={`w-12 h-10 text-xs flex items-center justify-center border transition-all ${
+                                                        selectedSize === size.label
+                                                            ? "border-black border-2 font-bold z-10"
+                                                            : "border-border/50 text-muted-foreground hover:border-black/50 -ml-[1px]"
+                                                    }`}
+                                                >
+                                                    {displaySize}
+                                                </button>
+                                            );
+                                        })
+                                    )}
                                 </div>
                             </div>
-                        )}
+                        ) : null}
 
                         {/* Colors */}
-                        {product.productLine === 'footwear' && (
+                        {product.productLine !== 'organics' && (
                             <div className="mb-8">
                                 <span className="text-[10px] uppercase tracking-[0.2em] font-medium block mb-3">Colors:</span>
                                 <div className="flex gap-2">
@@ -223,15 +243,21 @@ export function FootwearProductDetailClient({ product }: { product: Product }) {
 
                         {/* Accordions */}
                         <Accordion className="w-full border-t border-border/40">
-                            <AccordionItem value="care" className="border-border/40">
-                                <AccordionTrigger className="text-[10px] uppercase tracking-[0.15em] font-bold hover:no-underline py-4 text-muted-foreground hover:text-foreground transition-colors">
-                                    Care Instructions
-                                </AccordionTrigger>
-                                <AccordionContent className="text-xs text-muted-foreground leading-relaxed pb-4">
-                                    Store in a cool, dry place. Keep away from direct sunlight. Clean with a soft damp cloth. 
-                                    For suede styles, use a suede brush to restore the nap.
-                                </AccordionContent>
-                            </AccordionItem>
+                            {/* Care Instructions (If applicable) */}
+                            {product.careInstructions && product.careInstructions.length > 0 && (
+                                <AccordionItem value="care" className="border-border/40">
+                                    <AccordionTrigger className="text-[10px] uppercase tracking-[0.15em] font-bold hover:no-underline py-4 text-muted-foreground hover:text-foreground transition-colors">
+                                        Care Instructions
+                                    </AccordionTrigger>
+                                    <AccordionContent className="text-xs text-muted-foreground leading-relaxed pb-4">
+                                        <ul className="list-disc pl-5 space-y-2">
+                                            {product.careInstructions.map((instruction, index) => (
+                                                <li key={index}>{instruction}</li>
+                                            ))}
+                                        </ul>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            )}
                             <AccordionItem value="ask" className="border-border/40">
                                 <AccordionTrigger className="text-[10px] uppercase tracking-[0.15em] font-bold hover:no-underline py-4 text-muted-foreground hover:text-foreground transition-colors">
                                     Ask a Question

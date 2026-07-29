@@ -9,12 +9,14 @@ export type Product = {
     images?: string[];
     badge?: string;
     category: string;
-    productLine: 'footwear' | 'organics';
+    productLine: 'footwear' | 'organics' | 'clothing';
     weight?: string;
     sizes?: { label: string; price: number }[];
+    variants?: { size: string; price: number }[];
     colors?: string[];
     ingredients?: string[];
     howToUse?: string[];
+    careInstructions?: string[];
     benefits?: string[];
     sizeOptions?: { label: string; price: number }[];
     skinHairType?: string;
@@ -26,6 +28,7 @@ export type Product = {
 export const products: Product[] = [
   {
     id: "p1",
+    careInstructions: ["Wipe with a damp cloth", "Use leather conditioner", "Avoid direct sunlight"],
     name: "SPARKE SLIDES - Black",
     shortDescription: "Fancy black heel slippers with shimmer detailing.",
     description: "Designed for graceful occasions, these fancy black heel slippers combine shimmer detailing with soft materials for elegant comfort. The cushioned design ensures you stay stylish without compromising ease.",
@@ -47,6 +50,7 @@ export const products: Product[] = [
   },
   {
     id: "p2",
+    careInstructions: ["Wipe clean only", "Do not machine wash"],
     name: "SILKEN SANDAL - Peach",
     shortDescription: "Elegant peach heel sandals with a stable block heel.",
     description: "Designed to add elegance to every step, these fancy silver heel sandals combine a smart silhouette. The distinctive upper and stable block heel make them a stylish choice for special occasions and festive wear.",
@@ -68,6 +72,7 @@ export const products: Product[] = [
   },
   {
     id: "p3",
+    careInstructions: ["Store in a dust bag", "Wipe with a soft cloth"],
     name: "SILKEN SANDAL - Silver",
     shortDescription: "Elegant silver heel sandals with a stable block heel.",
     description: "Designed to add elegance to every step, these fancy silver heel sandals combine a smart silhouette. The distinctive upper and stable block heel make them a stylish choice for special occasions and festive wear.",
@@ -89,6 +94,7 @@ export const products: Product[] = [
   },
   {
     id: "p4",
+    careInstructions: ["Wipe clean with a damp cloth", "Store in a cool, dry place"],
     name: "SILKEN SANDAL - Gold",
     shortDescription: "Elegant gold heel sandals with a stable block heel.",
     description: "Designed to add elegance to every step, these fancy gold heel sandals combine a smart silhouette. The distinctive upper and stable block heel make them a stylish choice for special occasions and festive wear.",
@@ -110,6 +116,7 @@ export const products: Product[] = [
   },
   {
     id: "p5",
+    careInstructions: ["Wipe clean only", "Do not machine wash"],
     name: "DAISY SLIDES - Tan",
     shortDescription: "Comfortable flat slides with an elegant bow detail.",
     description: "Tan in color, these flat slides are designed for everyday comfort. They combine feminine styling with supportive cushioning. The elegant bow detail adds a graceful finishing touch to your daily look.",
@@ -131,6 +138,7 @@ export const products: Product[] = [
   },
   {
     id: "p6",
+    careInstructions: ["Store in a dust bag", "Wipe with a soft cloth"],
     name: "DAISY SLIDES - Black",
     shortDescription: "Comfortable flat slides with an elegant bow detail.",
     description: "Black in color, these flat slides are designed for everyday comfort. They combine feminine styling with supportive cushioning. The elegant bow detail adds a graceful finishing touch to your daily look.",
@@ -152,6 +160,7 @@ export const products: Product[] = [
   },
   {
     id: "p7",
+    careInstructions: ["Wipe clean with a damp cloth", "Store in a cool, dry place"],
     name: "DAISY SLIDES - Beige",
     shortDescription: "Comfortable flat slides with an elegant bow detail.",
     description: "Beige in color, these flat slides are designed for everyday comfort. They combine feminine styling with supportive cushioning. The elegant bow detail adds a graceful finishing touch to your daily look.",
@@ -173,6 +182,7 @@ export const products: Product[] = [
   },
   {
     id: "p8",
+    careInstructions: ["Wipe clean only", "Do not machine wash"],
     name: "WALKZE SLIDES - Pink",
     shortDescription: "Pink flat slides with padded straps and medicated insole.",
     description: "Blending contemporary style with everyday comfort, these pink flat slides feature soft padded straps for a plush feel. The cushioned medicated insole keeps every step comfortable from morning to evening.",
@@ -194,6 +204,7 @@ export const products: Product[] = [
   },
   {
     id: "p9",
+    careInstructions: ["Store in a dust bag", "Wipe with a soft cloth"],
     name: "WALKZE SLIDES - Grey",
     shortDescription: "Grey flat slides with padded straps and medicated insole.",
     description: "Blending contemporary style with everyday comfort, these grey flat slides feature soft padded straps for a plush feel. The cushioned medicated insole keeps every step comfortable from morning to evening.",
@@ -215,6 +226,7 @@ export const products: Product[] = [
   },
   {
     id: "p10",
+    careInstructions: ["Wipe clean with a damp cloth", "Store in a cool, dry place"],
     name: "WALKZE SLIDES - Black",
     shortDescription: "Black flat slides with padded straps and medicated insole.",
     description: "Blending contemporary style with everyday comfort, these black flat slides feature soft padded straps for a plush feel. The cushioned medicated insole keeps every step comfortable from morning to evening.",
@@ -236,6 +248,7 @@ export const products: Product[] = [
   },
   {
     id: "o1",
+    careInstructions: ["Store in a cool, dark place", "Keep away from direct sunlight", "Keep tightly closed after use"],
     name: "Pure Rosemary Hair Oil",
     shortDescription: "100% natural cold-pressed rosemary oil for hair growth.",
     description: "Stimulate your scalp and promote healthy hair growth with our 100% natural, cold-pressed rosemary hair oil. It strengthens roots, reduces hair fall, and adds a natural shine to your hair.",
@@ -243,6 +256,10 @@ export const products: Product[] = [
     image: "/images/hair-oil-nobg.png",
     category: "hair-care",
     productLine: "organics",
+    variants: [
+        { size: "50ml", price: 800 },
+        { size: "100ml", price: 1200 }
+    ],
     ingredients: ["100% Pure Rosemary Essential Oil", "Carrier Oil Blend"],
     howToUse: ["Apply a few drops to the scalp", "Massage gently for 5 minutes", "Leave overnight or for at least 2 hours before washing"],
     benefits: ["Promotes hair growth", "Reduces hair fall", "Strengthens roots"],
@@ -250,6 +267,7 @@ export const products: Product[] = [
   },
   {
     id: "o2",
+    careInstructions: ["Store in a cool, dry place", "Avoid getting water in the bottle", "Keep away from direct sunlight"],
     name: "Keratin Smooth Shampoo",
     shortDescription: "Sulfate-free keratin shampoo for silky smooth hair.",
     description: "Keep your hair healthy and smooth with our keratin-infused shampoo. Formulated to fight frizz and gently cleanse without stripping your hair of its natural moisture.",
@@ -257,10 +275,61 @@ export const products: Product[] = [
     image: "/images/shampoo-keratin-nobg.png",
     category: "hair-care",
     productLine: "organics",
+    variants: [
+        { size: "200ml", price: 850 },
+        { size: "400ml", price: 1500 }
+    ],
     ingredients: ["Keratin Extract", "Aloe Vera", "Vitamin E"],
     howToUse: ["Take a small amount", "Massage onto wet hair", "Rinse thoroughly with water"],
     benefits: ["Fights frizz", "Smooths hair", "Adds shine"],
     skinHairType: "All hair types"
+  },
+  {
+    id: "c1",
+    careInstructions: ["Machine wash cold", "Wash inside out", "Tumble dry low", "Do not bleach"],
+    name: "Oversized Balloon Jeans",
+    shortDescription: "Relaxed fit balloon jeans in beige.",
+    price: 4500,
+    category: "JEANS",
+    productLine: "clothing",
+    image: "/images/bottom1.webp",
+    images: [
+        "/images/bottom1.webp",
+        "/images/bottom2.webp",
+        "/images/bottom3.jpg",
+        "/images/bottom4.webp"
+    ],
+    colors: ["Beige"],
+    description: "These oversized balloon jeans feature button and zip closure, front two pockets and back patch pockets with a fitted waist and wider leg tapering at ankle.",
+    sizes: [
+        { label: "W28", price: 4500 },
+        { label: "W30", price: 4500 },
+        { label: "W32", price: 4500 },
+        { label: "W34", price: 4500 }
+    ],
+  },
+  {
+    id: "c2",
+    careInstructions: ["Machine wash cold", "Wash with like colors", "Iron on low heat", "Do not dry clean"],
+    name: "Striped Jacquard Shirt (Relaxed Fit)",
+    shortDescription: "Relaxed fit striped jacquard shirt.",
+    price: 3990,
+    category: "SHIRTS",
+    productLine: "clothing",
+    image: "/images/top1.webp",
+    images: [
+        "/images/top1.webp",
+        "/images/top2.webp",
+        "/images/top3.webp"
+    ],
+    colors: ["Pink"],
+    description: "This striped jacquard shirt features a refined v-neck collar, and half sleeves that are made from 100% cotton with a relaxed, comfortable fit and drop shoulders for effortless movement and style.",
+    sizes: [
+        { label: "S", price: 3990 },
+        { label: "M", price: 3990 },
+        { label: "L", price: 3990 },
+        { label: "XL", price: 3990 }
+    ],
   }
 ];
 
