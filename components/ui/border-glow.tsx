@@ -119,6 +119,9 @@ export const BorderGlow = ({
   }, [getCenterOfElement]);
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
+    // Disable on mobile/touch devices to prevent severe lag during scrolling
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
+
     const card = cardRef.current;
     if (!card) return;
 

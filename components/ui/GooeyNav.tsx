@@ -148,7 +148,7 @@ const GooeyNav = ({
     }
     
     if (filterRef.current) {
-      makeParticles(filterRef.current);
+      // makeParticles(filterRef.current);
     }
   };
 
@@ -196,11 +196,6 @@ const GooeyNav = ({
   return (
     <div className="gooey-nav-container" ref={containerRef}>
       <svg width="0" height="0" style={{ position: 'absolute' }}>
-        <filter id="gooey" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="gooey" />
-          <feBlend in="SourceGraphic" in2="gooey" />
-        </filter>
       </svg>
       <nav>
         <ul ref={navRef}>

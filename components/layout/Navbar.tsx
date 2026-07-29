@@ -50,10 +50,10 @@ export function Navbar() {
         <header
             className={`fixed top-0 w-full z-50 transition-all duration-300 ${
                 isScrolled 
-                    ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm py-1" 
+                    ? "bg-white/95 border-b border-border shadow-sm py-1" 
                     : pathname === "/" 
                         ? "bg-transparent border-transparent py-4"
-                        : "bg-white/50 backdrop-blur-sm border-transparent py-4"
+                        : "bg-white/95 border-transparent py-4"
             }`}
         >
             <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">

@@ -64,7 +64,7 @@ export function ProductCard({ product }: ProductCardProps) {
                     {/* Actions */}
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 w-[90%]">
                         {showSizes ? (
-                            <div className="flex flex-col gap-2 bg-white/95 backdrop-blur-sm border border-border p-3 shadow-xl w-full animate-in fade-in slide-in-from-bottom-2 duration-300">
+                            <div className="flex flex-col gap-2 bg-white/95 border border-border p-3 shadow-xl w-full animate-in fade-in slide-in-from-bottom-2 duration-300">
                                 <div className="flex justify-between items-center mb-1">
                                     <span className="text-[10px] font-bold uppercase tracking-widest text-foreground">Select Size</span>
                                     <button 
@@ -107,7 +107,7 @@ export function ProductCard({ product }: ProductCardProps) {
                                 >
                                     {product.productLine === 'footwear' ? 'Quick Add' : 'Add to Cart'}
                                 </button>
-                                <Link href={`/shop/${product.id}`} className="flex-1 bg-white/95 backdrop-blur-sm text-black text-center text-[9px] font-bold uppercase tracking-widest py-2.5 border border-border shadow-md hover:bg-black hover:text-white transition-colors flex items-center justify-center">
+                                <Link href={`/shop/${product.id}`} className="flex-1 bg-white/95 text-black text-center text-[9px] font-bold uppercase tracking-widest py-2.5 border border-border shadow-md hover:bg-black hover:text-white transition-colors flex items-center justify-center">
                                     View Details
                                 </Link>
                             </div>
