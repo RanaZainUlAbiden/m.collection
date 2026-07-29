@@ -11,7 +11,6 @@
 "use client";
 
 import { useRef, useMemo } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SpecularButton from "@/components/ui/SpecularButton";
@@ -137,40 +136,20 @@ export function HeroSection3D() {
             </div>
 
             <div className="container mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center mt-12 lg:mt-16 z-20 relative">
-                {/* Entrance animation container */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                    className="w-full max-w-4xl flex flex-col items-center justify-center"
-                >
-                    {/* Header animation */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.3 }}
-                        className="text-5xl sm:text-6xl md:text-8xl text-foreground tracking-tight mb-6 leading-[1.1]"
-                    >
+                {/* Entrance container */}
+                <div className="w-full max-w-4xl flex flex-col items-center justify-center">
+                    {/* Header */}
+                    <h1 className="text-5xl sm:text-6xl md:text-8xl text-foreground tracking-tight mb-6 leading-[1.1]">
                         <span className="font-sans font-bold">Elevate Your</span>
                         <br />
                         <span className="font-serif italic text-primary font-medium">Style & Wellness</span>
-                    </motion.h1>
+                    </h1>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.5 }}
-                        className="text-sm md:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-12"
-                    >
+                    <p className="text-sm md:text-lg text-muted-foreground max-w-2xl leading-relaxed mb-12">
                         Step into elegance with our premium footwear and nourish yourself with our handmade organic self-care products.
-                    </motion.p>
+                    </p>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, delay: 0.6 }}
-                    className="flex flex-col sm:flex-row items-center justify-center gap-4"
-                >
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <Link href="/shop">
                         <SpecularButton
                             size="lg"
@@ -185,31 +164,22 @@ export function HeroSection3D() {
                             shineSize={15}
                             shineFade={50}
                             thickness={2}
-                            speed={0.4}
-                            followMouse={true}
+                            speed={0}
+                            followMouse={false}
                             proximity={300}
                             className="tracking-widest uppercase font-bold shadow-xl w-full sm:w-auto"
                         >
                             Shop Collection
                         </SpecularButton>
                     </Link>
-                </motion.div>
-            </motion.div>
+                </div>
+            </div>
 
             {/* Scroll Indicator */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 1.2 }}
-                    className="flex flex-col items-center gap-3 mt-16 md:mt-24 z-20 pointer-events-none"
-                >
+                <div className="flex flex-col items-center gap-3 mt-16 md:mt-24 z-20 pointer-events-none">
                     <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-foreground/50">Scroll</span>
-                    <motion.div
-                        animate={{ y: [0, 8, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                        className="w-[1px] h-12 bg-gradient-to-b from-foreground/50 to-transparent"
-                    />
-                </motion.div>
+                    <div className="w-[1px] h-12 bg-gradient-to-b from-foreground/50 to-transparent" />
+                </div>
             </div>
         </section>
     );

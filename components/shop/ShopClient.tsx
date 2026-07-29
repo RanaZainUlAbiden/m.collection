@@ -11,7 +11,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Filter, SearchX } from "lucide-react";
@@ -114,18 +113,16 @@ export function ShopClient({ initialProducts }: ShopClientProps) {
 
                 {/* Product Grid / Empty State / Skeletons */}
                 {isLoading ? (
-                    <motion.div 
+                    <div 
                         key="skeleton"
-                        initial="hidden" animate="show" 
-                        variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
                         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 md:gap-y-12"
                     >
                         {[...Array(8)].map((_, i) => (
-                            <motion.div key={i} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}>
+                            <div key={i}>
                                 <ProductCardSkeleton />
-                            </motion.div>
+                            </div>
                         ))}
-                    </motion.div>
+                    </div>
                 ) : filteredProducts.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-24 text-center">
                         <SearchX className="w-16 h-16 text-muted-foreground/30 mb-4" />
@@ -141,18 +138,16 @@ export function ShopClient({ initialProducts }: ShopClientProps) {
                         </button>
                     </div>
                 ) : (
-                    <motion.div 
+                    <div 
                         key={selectedCategory + sortBy + currentPage}
-                        initial="hidden" animate="show" 
-                        variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
                         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 md:gap-y-12"
                     >
                         {paginatedProducts.map((product) => (
-                            <motion.div key={product.id} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
+                            <div key={product.id}>
                                 <ProductCard product={product} />
-                            </motion.div>
+                            </div>
                         ))}
-                    </motion.div>
+                    </div>
                 )}
 
                 {/* Pagination Controls */}

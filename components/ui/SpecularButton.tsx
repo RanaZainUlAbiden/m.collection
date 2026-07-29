@@ -167,75 +167,27 @@ const SpecularButton = ({
       renderer.setSize(w + PAD * 2, h + PAD * 2);
       program.uniforms.uCenter.value = [(PAD + w / 2) * dpr, (PAD + h / 2) * dpr];
       program.uniforms.uHalfSize.value = [(w / 2) * dpr, (h / 2) * dpr];
-    };
-    const ro = new ResizeObserver(resize);
-    ro.observe(btn);
-    resize();
-
-    let pointerAngle: number | null = null;
-    let proximityT = 0;
-    const onPointerMove = (e: MouseEvent) => {
-      const rect = btn.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
-      const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
-      const dist = Math.hypot(dx, dy);
       
-      if (dist === 0) {
-        const nx = (e.clientX - cx) / (rect.width / 2);
-        const ny = (cy - e.clientY) / (rect.height / 2);
-        pointerAngle = Math.atan2(2 / rect.height, -2 / rect.width) + nx * 0.3 + ny * 0.15;
-      } else {
-        pointerAngle = Math.atan2(cy - e.clientY, e.clientX - cx);
-      }
-      const t = Math.max(0, 1 - dist / Math.max(propsRef.current.proximity, 1));
-      proximityT = t * t * (3 - 2 * t);
-    };
-    window.addEventListener('pointermove', onPointerMove);
-
-    let angle = 2.4;
-    let idleAngle = 2.4;
-    let bright = 0;
-    let last = performance.now();
-    let raf = 0;
-
-    const lineC = new Color();
-    const baseC = new Color();
-
-    const update = (now: number) => {
-      raf = requestAnimationFrame(update);
-      const dt = Math.min((now - last) / 1000, 0.05);
-      last = now;
+      // Render once statically to save CPU
       const p = propsRef.current;
-
-      idleAngle += p.speed * dt;
-      const steer = p.followMouse && pointerAngle != null && (!p.autoAnimate || proximityT > 0);
-      const target = steer ? pointerAngle! : idleAngle;
-      const diff = ((target - angle + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
-      angle += diff * (1 - Math.exp(-dt * 7));
-
-      const brightTarget = p.autoAnimate ? 1 : proximityT;
-      bright += (brightTarget - bright) * (1 - Math.exp(-dt * 8));
-
-      lineC.set(p.lineColor);
-      baseC.set(p.baseColor);
-      program.uniforms.uAngle.value = angle;
-      program.uniforms.uRadius.value = Math.min(p.radius, Math.min(sizeRef.w, sizeRef.h) / 2) * dpr;
+      const lineC = new Color(p.lineColor);
+      const baseC = new Color(p.baseColor);
+      program.uniforms.uAngle.value = 2.4;
+      program.uniforms.uRadius.value = Math.min(p.radius, Math.min(w, h) / 2) * dpr;
       program.uniforms.uLineColor.value = [lineC.r, lineC.g, lineC.b];
       program.uniforms.uBaseColor.value = [baseC.r, baseC.g, baseC.b];
-      program.uniforms.uIntensity.value = p.intensity * bright;
+      program.uniforms.uIntensity.value = p.intensity;
       program.uniforms.uShineSize.value = (p.shineSize * Math.PI) / 180;
       program.uniforms.uShineFade.value = (p.shineFade * Math.PI) / 180;
       program.uniforms.uThickness.value = p.thickness * dpr;
       renderer.render({ scene: mesh });
     };
-    raf = requestAnimationFrame(update);
+    const ro = new ResizeObserver(resize);
+    ro.observe(btn);
+    resize();
 
     return () => {
-      cancelAnimationFrame(raf);
       ro.disconnect();
-      window.removeEventListener('pointermove', onPointerMove);
       if (gl.canvas.parentNode === fx) fx.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
