@@ -43,11 +43,15 @@ export function ShopClient({ initialProducts }: ShopClientProps) {
     const [selectedCategory, setSelectedCategory] = useState("ALL");
     const [sortBy, setSortBy] = useState("Featured");
     const [isLoading, setIsLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
     const addToCart = useCartStore((state) => state.addToCart);
+
+    const PRODUCTS_PER_PAGE = 20;
 
     useEffect(() => {
         // eslint-disable-next-line
         setIsLoading(true);
+        setCurrentPage(1);
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 400); // Small artificial delay to show skeletons during filter change
@@ -67,6 +71,9 @@ export function ShopClient({ initialProducts }: ShopClientProps) {
     } else if (sortBy === "Price: High to Low") {
         filteredProducts.sort((a, b) => b.price - a.price);
     }
+
+    const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE));
+    const paginatedProducts = filteredProducts.slice((currentPage - 1) * PRODUCTS_PER_PAGE, currentPage * PRODUCTS_PER_PAGE);
 
     return (
         <div className="container mx-auto px-4 md:px-8 mt-8 pb-24 font-sans">
@@ -135,17 +142,63 @@ export function ShopClient({ initialProducts }: ShopClientProps) {
                     </div>
                 ) : (
                     <motion.div 
-                        key={selectedCategory + sortBy}
+                        key={selectedCategory + sortBy + currentPage}
                         initial="hidden" animate="show" 
                         variants={{ hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.1 } } }}
                         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 md:gap-x-6 md:gap-y-12"
                     >
-                        {filteredProducts.map((product) => (
+                        {paginatedProducts.map((product) => (
                             <motion.div key={product.id} variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.5 } } }}>
                                 <ProductCard product={product} />
                             </motion.div>
                         ))}
                     </motion.div>
+                )}
+
+                {/* Pagination Controls */}
+                {!isLoading && totalPages > 1 && (
+                    <div className="flex justify-center items-center gap-2 mt-12 border-t border-border/40 pt-8">
+                        <button
+                            onClick={() => {
+                                setCurrentPage(p => Math.max(1, p - 1));
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            disabled={currentPage === 1}
+                            className="px-4 py-2 text-xs font-bold uppercase tracking-widest border border-border disabled:opacity-30 hover:bg-black hover:text-white transition-colors"
+                        >
+                            Prev
+                        </button>
+                        
+                        <div className="flex items-center gap-1 overflow-x-auto max-w-[200px] sm:max-w-none no-scrollbar">
+                            {Array.from({ length: totalPages }).map((_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => {
+                                        setCurrentPage(i + 1);
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
+                                    className={`min-w-[32px] h-8 px-2 flex items-center justify-center text-xs font-bold border transition-colors ${
+                                        currentPage === i + 1 
+                                            ? "bg-black text-white border-black" 
+                                            : "border-transparent hover:border-border text-muted-foreground hover:text-foreground"
+                                    }`}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                        </div>
+
+                        <button
+                            onClick={() => {
+                                setCurrentPage(p => Math.min(totalPages, p + 1));
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            disabled={currentPage === totalPages}
+                            className="px-4 py-2 text-xs font-bold uppercase tracking-widest border border-border disabled:opacity-30 hover:bg-black hover:text-white transition-colors"
+                        >
+                            Next
+                        </button>
+                    </div>
                 )}
             </div>
         </div>
