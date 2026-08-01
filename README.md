@@ -81,8 +81,7 @@ Go to your Vercel project → Settings → Environment Variables and add:
 Navigate to `https://your-domain.com/admin/` and log in with GitHub.
 
 ### Who Can Access the CMS?
-- **Anyone with a GitHub account** can log in
-- **But only repo collaborators** with write access to `waleedislam/m.collection` can save changes
+- **Only invited repository collaborators** can log in and access the CMS, because this is a private repository.
 - To add an admin: GitHub → Repo Settings → Collaborators → Add people
 - To remove access: Remove them as a collaborator
 
