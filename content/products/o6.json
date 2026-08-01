@@ -1,0 +1,30 @@
+{
+  "id": "o6",
+  "name": "Whitening Cream",
+  "shortDescription": "Herbal Haven Whitening Cream for glowing skin.",
+  "description": "Herbal Haven by Nashra Whitening Cream. Nourishes the skin and promotes a bright, glowing complexion using natural herbal extracts.",
+  "price": 800,
+  "category": "skin-care",
+  "productLine": "organics",
+  "image": "/images/whitening-cream.png",
+  "images": [
+    "/images/whitening-cream.png"
+  ],
+  "variants": [
+    {
+      "size": "35g",
+      "price": 800
+    },
+    {
+      "size": "50g",
+      "price": 1200
+    }
+  ],
+  "benefits": [
+    "Brightens skin",
+    "Promotes glowing complexion"
+  ],
+  "howToUse": [
+    "Apply gently to the face and neck before sleeping."
+  ]
+}

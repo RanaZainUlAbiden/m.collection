@@ -1,0 +1,32 @@
+{
+  "id": "o4",
+  "name": "Teeth Whitening Powder",
+  "shortDescription": "Herbal powder for white and strong teeth.",
+  "description": "Herbal Haven by Nashra Teeth Whitening Powder. Made with natural herbs to keep your teeth white, strong, and healthy. It also helps relieve pain and removes swelling.",
+  "price": 600,
+  "category": "skin-care",
+  "productLine": "organics",
+  "image": "/images/teeth-whitening-powder.png",
+  "images": [
+    "/images/teeth-whitening-powder.png"
+  ],
+  "variants": [
+    {
+      "size": "100g",
+      "price": 600
+    },
+    {
+      "size": "300g",
+      "price": 1800
+    }
+  ],
+  "benefits": [
+    "Teeth whitening",
+    "Strong teeth",
+    "Relieves pain",
+    "Removes swelling"
+  ],
+  "howToUse": [
+    "Apply a small amount to your toothbrush and brush gently"
+  ]
+}

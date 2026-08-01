@@ -142,6 +142,90 @@ export const products: Product[] = [
       careInstructions: ["Store in a cool, dry place", "Avoid getting water in the bottle", "Keep away from direct sunlight"]
     },
     {
+      id: "o3",
+      name: "Rosemary Hair Toner",
+      shortDescription: "Herbal Hair Spray Toner for long hair.",
+      description: "Herbal Haven by Nashra Rosemary Hair Toner. Promotes long hair and helps to stop hairfall. Perfect for daily use to keep your hair healthy and strong.",
+      price: 800,
+      category: "hair-care",
+      productLine: "organics",
+      image: "/images/rosemary-hair-toner.png",
+      images: ["/images/rosemary-hair-toner.png"],
+      variants: [
+        {
+          size: "200ml",
+          price: 800
+        }
+      ],
+      benefits: ["Promotes long hair", "Stops hairfall"],
+      howToUse: ["Spray directly onto scalp and hair roots"]
+    },
+    {
+      id: "o4",
+      name: "Teeth Whitening Powder",
+      shortDescription: "Herbal powder for white and strong teeth.",
+      description: "Herbal Haven by Nashra Teeth Whitening Powder. Made with natural herbs to keep your teeth white, strong, and healthy. It also helps relieve pain and removes swelling.",
+      price: 600,
+      category: "skin-care",
+      productLine: "organics",
+      image: "/images/teeth-whitening-powder.png",
+      images: ["/images/teeth-whitening-powder.png"],
+      variants: [
+        {
+          size: "100g",
+          price: 600
+        },
+        {
+          size: "300g",
+          price: 1800
+        }
+      ],
+      benefits: ["Teeth whitening", "Strong teeth", "Relieves pain", "Removes swelling"],
+      howToUse: ["Apply a small amount to your toothbrush and brush gently"]
+    },
+    {
+      id: "o5",
+      name: "Whitening Herbal Ubtan",
+      shortDescription: "Herbal mud mask powder for bright, clear skin.",
+      description: "Herbal Haven by Nashra Whitening Herbal Ubtan (Mud Mask). This natural blend makes the skin tight and bright, removes roughness, and clears acne for a flawless complexion.",
+      price: 600,
+      category: "skin-care",
+      productLine: "organics",
+      image: "/images/ubtan-powder.png",
+      images: ["/images/ubtan-powder.png"],
+      variants: [
+        {
+          size: "100g",
+          price: 600
+        }
+      ],
+      benefits: ["Skin tight and bright", "Removes roughness", "Clears acne"],
+      howToUse: ["Mix with water or rose water to form a paste. Apply to skin and let it dry before washing."]
+    },
+    {
+      id: "o6",
+      name: "Whitening Cream",
+      shortDescription: "Herbal Haven Whitening Cream for glowing skin.",
+      description: "Herbal Haven by Nashra Whitening Cream. Nourishes the skin and promotes a bright, glowing complexion using natural herbal extracts.",
+      price: 800,
+      category: "skin-care",
+      productLine: "organics",
+      image: "/images/whitening-cream.png",
+      images: ["/images/whitening-cream.png"],
+      variants: [
+        {
+          size: "35g",
+          price: 800
+        },
+        {
+          size: "50g",
+          price: 1200
+        }
+      ],
+      benefits: ["Brightens skin", "Promotes glowing complexion"],
+      howToUse: ["Apply gently to the face and neck before sleeping."]
+    },
+    {
       id: "p1",
       name: "SPARKE SLIDES - Black",
       shortDescription: "Fancy black heel slippers with shimmer detailing.",

@@ -1,0 +1,27 @@
+{
+  "id": "o5",
+  "name": "Whitening Herbal Ubtan",
+  "shortDescription": "Herbal mud mask powder for bright, clear skin.",
+  "description": "Herbal Haven by Nashra Whitening Herbal Ubtan (Mud Mask). This natural blend makes the skin tight and bright, removes roughness, and clears acne for a flawless complexion.",
+  "price": 600,
+  "category": "skin-care",
+  "productLine": "organics",
+  "image": "/images/ubtan-powder.png",
+  "images": [
+    "/images/ubtan-powder.png"
+  ],
+  "variants": [
+    {
+      "size": "100g",
+      "price": 600
+    }
+  ],
+  "benefits": [
+    "Skin tight and bright",
+    "Removes roughness",
+    "Clears acne"
+  ],
+  "howToUse": [
+    "Mix with water or rose water to form a paste. Apply to skin and let it dry before washing."
+  ]
+}
