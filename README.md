@@ -9,154 +9,87 @@ This platform supports three main product lines:
 
 ---
 
-## 🛍️ Store Management Guide (No Database Required!)
+## 🛍️ Store Management Guide (Decap CMS)
 
-This project is designed to be incredibly fast and easy to maintain. You do not need to log into a complicated database to add new products or manage your store. Everything is powered by a local file!
+This project uses an incredibly fast, lightweight architecture. You do not need to log into a complicated database to manage your store. Everything is powered by **Decap CMS**, which saves your product data securely as files inside this code repository.
 
-### 1. The Core Data File
-All product data is stored in a single file: `data/products.ts`.
-This is your **source of truth**. Any changes made to this file instantly update the entire website (shop pages, product details, cart, etc).
+### 1. Accessing the Admin Panel
+To manage products and testimonials, navigate to the admin dashboard:
+**`https://your-domain.com/admin/`**
 
-### 2. How to Add a New Product
-To add a new product:
-1. Open `data/products.ts`.
-2. Scroll to the bottom of the `products` array.
-3. Copy an existing product block and paste it below.
-4. Fill in the new details based on the template below:
+*(Note: During local development on your computer, you can access it at `http://localhost:3000/admin/` as long as you are running both `npm run dev` and `npx decap-server`.)*
 
-```typescript
-{
-    id: "new-unique-id", // MUST be unique (e.g. p11, c3, o4)
-    name: "Product Name",
-    shortDescription: "A very brief 1-sentence summary.",
-    description: "Your full product description goes here. It can be long.",
-    price: 5000, // Default Base Price in PKR
-    category: "HEELS", // e.g., "HEELS", "SANDALS", "FLATS", "HAIR-CARE", "SKIN-CARE", "JEANS", "SHIRTS"
-    productLine: "footwear", // CRITICAL: Choose "footwear" | "organics" | "clothing"
-    image: "/images/your-primary-image.jpg",
-    images: ["/images/your-primary-image.jpg", "/images/alternate-image.jpg"],
-    
-    // --- OPTIONAL FIELDS ---
-    badge: "New Arrival", // E.g. "New Arrival" or "Best Seller". Used to feature products on homepage!
-    colors: ["Beige", "Pink"], // Array of color names. This automatically shows the color picker on the UI.
-    careInstructions: ["Wipe clean", "Store in a cool dry place"], // Array of strings. Renders an accordion section.
-    
-    // --- SIZING FOR FOOTWEAR & CLOTHING ---
-    // If the product has static prices regardless of size, use 'sizes':
-    sizes: [
-        { label: "EU 36", price: 5000 },
-        { label: "EU 37", price: 5000 }
-        // For Jeans: { label: "W30 L32", price: 6000 }
-        // For Tops: { label: "S", price: 3000 }
-    ],
+### 2. Managing Products
+Inside the Admin Panel, click on **Products**.
+- **Adding a product:** Click "New Product". Fill out the required fields (Name, Price, Category, etc.) and upload a Primary Image.
+- **Putting a product on sale:** Enter the old, higher price into the "Original Price" field, and enter the active sale price into the "Base Price" field. The website will automatically cross out the old price and display a red "Save X%" tag!
+- **Featuring a product:** Type "Best Seller" or "New Arrival" into the "Badge" field. This will force the product to appear in the "Top Picks" section on the homepage.
+- **Managing Sizes:** Scroll down to the "Sizes (Footwear & Clothing)" section to add sizes like W28, W30, or EU 36.
 
-    // --- SIZING FOR ORGANICS ---
-    // If the price changes based on weight/size, use 'variants' instead:
-    // variants: [
-    //     { size: "50g", price: 1200 },
-    //     { size: "35g", price: 800 }
-    // ],
-    // howToUse: ["Apply to skin", "Leave for 10 mins"], // Specific to organics
-    // ingredients: ["Aloe Vera", "Vitamin E"], // Specific to organics
-}
-```
+### 3. How the Data Pipeline Works (For Developers)
+1. You edit products in the visual admin UI at `/admin/`
+2. Decap CMS saves the changes as `.json` files inside the `content/products/` directory and commits them to GitHub.
+3. Vercel automatically detects the change and rebuilds the site.
+4. During the build, a prebuild script (`scripts/generate-products.ts`) converts all those JSON files into a highly-optimized TypeScript file (`data/products.ts`).
+5. **CRITICAL:** Never manually edit `data/products.ts`! Any manual changes will be instantly overwritten the next time the site builds. If you want to manually edit data without the CMS, edit the JSON files in `content/products/`.
 
-### 3. How to Feature a Product on the Homepage (Top Picks)
-The **Bestselling Products** section on the homepage automatically selects up to 4 products based on their badges.
-To force a product to appear on the homepage, simply give it a badge!
-Add or modify the `badge` property in the product object:
-`badge: "Best Seller"` or `badge: "New Arrival"`
+## 🔐 Admin Panel (Decap CMS)
 
-### 4. How to Mark an Item Out of Stock
-If a specific size sells out, you can easily hide it from the website so customers can't buy it.
-1. Open `data/products.ts`.
-2. Locate the product you want to modify.
-3. In the `sizes` array, simply comment out (or delete) the line corresponding to the out-of-stock size by putting `//` in front of it.
+This store includes a built-in admin panel powered by **Decap CMS** (formerly Netlify CMS). It lets you add/edit products and upload images through a visual UI — **no database required**. All changes are saved as JSON files in the repo, and images go to `public/images/`.
 
-```typescript
-    sizes: [
-        { label: "EU 36", price: 5250 },
-        { label: "EU 37", price: 5250 },
-        // { label: "EU 38", price: 5250 }, <-- Commented out! It instantly disappears from the site.
-        { label: "EU 39", price: 5250 }
-    ],
-```
+### How It Works
+1. You edit products in the admin UI at `/admin/`
+2. Decap CMS saves the changes as JSON files in `content/products/` and commits to GitHub
+3. Vercel auto-rebuilds the site
+4. A prebuild script (`scripts/generate-products.ts`) regenerates `data/products.ts` from the JSON files
+5. The new product appears on the live site
 
-### 5. How to Put a Product on Sale (Discounts)
-You have full manual control over sales and discounts.
-To put a product on sale, edit the product's entry in `data/products.ts` and use two fields:
-- `originalPrice`: The old, higher price before the discount.
-- `price`: The current, active sale price that the customer will pay.
+### Local Development (Testing the Admin)
 
-```typescript
-{
-  id: "p1",
-  name: "SPARKE SLIDES - Black",
-  originalPrice: 7000, // The old price (will be automatically crossed out)
-  price: 5250,         // The new sale price
-  // ...
-}
-```
-*The website will automatically calculate the % saved and display a bright red "Save X%" tag on the product!*
-
-### 6. How to Manage Images
-All product images live in the `public/images/` directory.
-1. Place your `.jpg` or `.png` file into the `public/images/` folder.
-2. In your `data/products.ts` file, reference the image simply by starting with a slash: `"/images/my-new-image.jpg"`.
-*Note: Do not type "public" in the path name inside your code.*
-
-### 7. How to Modify Customer Testimonials
-Testimonials are stored in `data/testimonials.ts`. Add a new block to the array to display a new review:
-```typescript
-{
-    id: "unique-review-id",
-    customerName: "Ali Raza",
-    location: "Lahore",
-    rating: 5,
-    text: "The quality of the footwear is amazing!",
-    date: "July 2026",
-    productBought: "Leather Loafers"
-}
-```
-
----
-
-## 📱 WhatsApp Checkout Integration
-
-This store utilizes a highly optimized **"Cart to WhatsApp"** flow. 
-When a customer clicks "Place Order via WhatsApp", the code in `app/checkout/page.tsx` dynamically gathers the customer details, order summary, and calculated totals, formats it into a secure WhatsApp message, and redirects the user to send it directly to your business number!
-
-**To change the business number:**
-1. Open `app/checkout/page.tsx`.
-2. Locate the line: `const waNumber = "+923154322433";`
-3. Change `+923154322433` to your actual WhatsApp Business number.
-
----
-
-## 🚀 Technical Setup (For Developers)
-
-1. **Install dependencies:**
+1. **Start the Decap CMS local server** in a separate terminal:
    ```bash
-   npm install
+   npx decap-server
    ```
-
-2. **Run the development server:**
+2. **Start the Next.js dev server** in another terminal:
    ```bash
    npm run dev
    ```
-   Open [http://localhost:3000](http://localhost:3000) with your browser.
-
-3. **Build for Production:**
-   ```bash
-   npm run build
+3. **Open the admin panel:**
    ```
+   http://localhost:3000/admin/
+   ```
+4. You should see the CMS with all products and testimonials listed. You can edit them and changes will be saved to the local `content/` directory. No GitHub login needed in local mode.
 
-## 💻 Tech Stack
-- **Framework:** Next.js 16 (App Router)
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion & GSAP
-- **State Management:** Zustand
-- **UI Components:** Shadcn UI, Lucide React
+### Production Setup (Deploying to Vercel)
+
+When you're ready to deploy, you need to set up GitHub OAuth so the admin can authenticate:
+
+**Step 1: Create a GitHub OAuth App**
+1. Go to GitHub → Settings → Developer settings → OAuth Apps → New OAuth App
+2. Application name: `Marjaan Collection CMS`
+3. Homepage URL: `https://your-domain.com`
+4. Authorization callback URL: `https://your-domain.com/api/decap-auth`
+5. Copy the **Client ID** and generate a **Client Secret**
+
+**Step 2: Set Environment Variables in Vercel**
+Go to your Vercel project → Settings → Environment Variables and add:
+- `OAUTH_GITHUB_CLIENT_ID` = your Client ID
+- `OAUTH_GITHUB_CLIENT_SECRET` = your Client Secret
+- `OAUTH_REDIRECT_URI` = `https://your-domain.com/api/decap-auth`
+
+**Step 3: Access the Admin Panel**
+Navigate to `https://your-domain.com/admin/` and log in with GitHub.
+
+### Who Can Access the CMS?
+- **Anyone with a GitHub account** can log in
+- **But only repo collaborators** with write access to `waleedislam/m.collection` can save changes
+- To add an admin: GitHub → Repo Settings → Collaborators → Add people
+- To remove access: Remove them as a collaborator
+
+### Managing Products via CMS vs. Manual Editing
+- **Via CMS (recommended):** Use the admin UI at `/admin/` — changes are saved as JSON files in `content/products/`
+- **Manual editing:** You can still edit the JSON files directly in `content/products/` — the prebuild script will pick them up
+- **Do NOT edit** `data/products.ts` or `data/testimonials.ts` directly — they are auto-generated!
 
 ---
 **Built by Haseeb** | [muhammadhaseebhassan23@gmail.com](mailto:muhammadhaseebhassan23@gmail.com)

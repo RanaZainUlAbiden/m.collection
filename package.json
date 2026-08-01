@@ -4,10 +4,11 @@
   "private": true,
   "author": "Haseeb <muhammadhaseebhassan23@gmail.com>",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "tsx scripts/generate-products.ts && next dev",
+    "build": "tsx scripts/generate-products.ts && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "gen-data": "tsx scripts/generate-products.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -42,6 +43,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",
+    "tsx": "^4.19.0",
     "typescript": "^5"
   }
 }

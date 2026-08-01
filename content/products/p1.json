@@ -1,0 +1,22 @@
+{
+  "id": "p1",
+  "name": "SPARKE SLIDES - Black",
+  "shortDescription": "Fancy black heel slippers with shimmer detailing.",
+  "description": "Designed for graceful occasions, these fancy black heel slippers combine shimmer detailing with soft materials for elegant comfort. The cushioned design ensures you stay stylish without compromising ease.",
+  "price": 5250,
+  "image": "/images/opia-shoe-1-nobg.png",
+  "images": ["/images/opia-shoe-1-nobg.png", "/images/opia-shoe-1-alt.jpg"],
+  "badge": "Best Seller",
+  "category": "heels",
+  "productLine": "footwear",
+  "sizes": [
+    { "label": "EU 36", "price": 5250 },
+    { "label": "EU 37", "price": 5250 },
+    { "label": "EU 38", "price": 5250 },
+    { "label": "EU 39", "price": 5250 },
+    { "label": "EU 40", "price": 5250 },
+    { "label": "EU 41", "price": 5250 }
+  ],
+  "colors": ["BLACK"],
+  "careInstructions": ["Wipe with a damp cloth", "Use leather conditioner", "Avoid direct sunlight"]
+}

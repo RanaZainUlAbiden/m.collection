@@ -1,0 +1,16 @@
+{
+  "id": "p11",
+  "name": "Dokht Heels",
+  "shortDescription": "Elegant Dokht heels.",
+  "description": "Beautiful Dokht heels designed for elegance and style. Perfect for special occasions or adding a touch of class to your everyday look.",
+  "price": 1900,
+  "image": "/images/dokht1.jpeg",
+  "images": ["/images/dokht1.jpeg"],
+  "category": "HEELS",
+  "productLine": "footwear",
+  "sizes": [
+    { "label": "EU 37", "price": 1900 },
+    { "label": "EU 39", "price": 1900 }
+  ],
+  "careInstructions": ["Wipe clean with a damp cloth", "Avoid direct sunlight"]
+}

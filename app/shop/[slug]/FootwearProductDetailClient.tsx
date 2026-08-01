@@ -21,8 +21,12 @@ export function FootwearProductDetailClient({ product }: { product: Product }) {
     const addToCart = useCartStore((state) => state.addToCart);
 
     const variantPrice = product.variants?.find(v => v.size === selectedSize)?.price;
-    const sizePrice = product.sizes?.find(s => s.label === selectedSize)?.price;
-    const currentPrice = variantPrice || sizePrice || product.price;
+    
+    // As requested: Size-specific pricing is only for Organics.
+    // Footwear and Clothing will always use the base product.price.
+    const currentPrice = product.productLine === 'organics' 
+        ? (variantPrice || product.price) 
+        : product.price;
     const originalPrice = product.originalPrice;
     
     // Add mock colors if none exist in data

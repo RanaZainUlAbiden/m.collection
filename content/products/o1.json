@@ -1,0 +1,19 @@
+{
+  "id": "o1",
+  "name": "Pure Rosemary Hair Oil",
+  "shortDescription": "100% natural cold-pressed rosemary oil for hair growth.",
+  "description": "Stimulate your scalp and promote healthy hair growth with our 100% natural, cold-pressed rosemary hair oil. It strengthens roots, reduces hair fall, and adds a natural shine to your hair.",
+  "price": 1200,
+  "image": "/images/hair-oil-nobg.png",
+  "category": "hair-care",
+  "productLine": "organics",
+  "variants": [
+    { "size": "50ml", "price": 800 },
+    { "size": "100ml", "price": 1200 }
+  ],
+  "ingredients": ["100% Pure Rosemary Essential Oil", "Carrier Oil Blend"],
+  "howToUse": ["Apply a few drops to the scalp", "Massage gently for 5 minutes", "Leave overnight or for at least 2 hours before washing"],
+  "benefits": ["Promotes hair growth", "Reduces hair fall", "Strengthens roots"],
+  "skinHairType": "All hair types",
+  "careInstructions": ["Store in a cool, dark place", "Keep away from direct sunlight", "Keep tightly closed after use"]
+}

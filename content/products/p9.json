@@ -1,0 +1,22 @@
+{
+  "id": "p9",
+  "name": "WALKZE SLIDES - Grey",
+  "shortDescription": "Grey flat slides with padded straps and medicated insole.",
+  "description": "Blending contemporary style with everyday comfort, these grey flat slides feature soft padded straps for a plush feel. The cushioned medicated insole keeps every step comfortable from morning to evening.",
+  "price": 4295,
+  "image": "/images/opia-shoe-9-alt.jpg",
+  "images": ["/images/opia-shoe-9-alt.jpg", "/images/opia-shoe-9-nobg.png"],
+  "badge": "",
+  "category": "flats",
+  "productLine": "footwear",
+  "sizes": [
+    { "label": "EU 36", "price": 4295 },
+    { "label": "EU 37", "price": 4295 },
+    { "label": "EU 38", "price": 4295 },
+    { "label": "EU 39", "price": 4295 },
+    { "label": "EU 40", "price": 4295 },
+    { "label": "EU 41", "price": 4295 }
+  ],
+  "colors": ["GREY"],
+  "careInstructions": ["Store in a dust bag", "Wipe with a soft cloth"]
+}

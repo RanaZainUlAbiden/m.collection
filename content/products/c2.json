@@ -1,0 +1,19 @@
+{
+  "id": "c2",
+  "name": "Striped Jacquard Shirt (Relaxed Fit)",
+  "shortDescription": "Relaxed fit striped jacquard shirt.",
+  "description": "This striped jacquard shirt features a refined v-neck collar, and half sleeves that are made from 100% cotton with a relaxed, comfortable fit and drop shoulders for effortless movement and style.",
+  "price": 3990,
+  "image": "/images/top1.webp",
+  "images": ["/images/top1.webp", "/images/top2.webp", "/images/top3.webp"],
+  "category": "SHIRTS",
+  "productLine": "clothing",
+  "colors": ["Pink"],
+  "sizes": [
+    { "label": "S", "price": 3990 },
+    { "label": "M", "price": 3990 },
+    { "label": "L", "price": 3990 },
+    { "label": "XL", "price": 3990 }
+  ],
+  "careInstructions": ["Machine wash cold", "Wash with like colors", "Iron on low heat", "Do not dry clean"]
+}

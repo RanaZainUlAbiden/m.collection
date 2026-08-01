@@ -1,0 +1,19 @@
+{
+  "id": "p12",
+  "name": "Dokht Slides",
+  "shortDescription": "Comfortable Dokht slides.",
+  "description": "Comfortable and casual Dokht slides designed for everyday wear. Slip into maximum comfort with a minimalist design.",
+  "price": 1800,
+  "image": "/images/dokht2.jpeg",
+  "images": ["/images/dokht2.jpeg"],
+  "category": "FLATS",
+  "productLine": "footwear",
+  "sizes": [
+    { "label": "EU 36", "price": 1800 },
+    { "label": "EU 38", "price": 1800 },
+    { "label": "EU 39", "price": 1800 },
+    { "label": "EU 40", "price": 1800 },
+    { "label": "EU 41", "price": 1800 }
+  ],
+  "careInstructions": ["Wipe clean with a damp cloth", "Store in a cool dry place"]
+}

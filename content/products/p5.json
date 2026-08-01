@@ -1,0 +1,22 @@
+{
+  "id": "p5",
+  "name": "DAISY SLIDES - Tan",
+  "shortDescription": "Comfortable flat slides with an elegant bow detail.",
+  "description": "Tan in color, these flat slides are designed for everyday comfort. They combine feminine styling with supportive cushioning. The elegant bow detail adds a graceful finishing touch to your daily look.",
+  "price": 4500,
+  "image": "/images/opia-shoe-5-alt.jpg",
+  "images": ["/images/opia-shoe-5-alt.jpg", "/images/opia-shoe-5-nobg.png"],
+  "badge": "",
+  "category": "flats",
+  "productLine": "footwear",
+  "sizes": [
+    { "label": "EU 36", "price": 4500 },
+    { "label": "EU 37", "price": 4500 },
+    { "label": "EU 38", "price": 4500 },
+    { "label": "EU 39", "price": 4500 },
+    { "label": "EU 40", "price": 4500 },
+    { "label": "EU 41", "price": 4500 }
+  ],
+  "colors": ["TAN"],
+  "careInstructions": ["Wipe clean only", "Do not machine wash"]
+}

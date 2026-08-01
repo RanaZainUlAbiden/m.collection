@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
     formats: ['image/webp'],
     minimumCacheTTL: 31536000,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/index.html',
+      },
+    ];
+  },
 };
 
 export default nextConfig;

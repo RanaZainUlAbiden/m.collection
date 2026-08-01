@@ -1,0 +1,22 @@
+{
+  "id": "p2",
+  "name": "SILKEN SANDAL - Peach",
+  "shortDescription": "Elegant peach heel sandals with a stable block heel.",
+  "description": "Designed to add elegance to every step, these fancy silver heel sandals combine a smart silhouette. The distinctive upper and stable block heel make them a stylish choice for special occasions and festive wear.",
+  "price": 5250,
+  "image": "/images/opia-shoe-2-nobg.png",
+  "images": ["/images/opia-shoe-2-nobg.png", "/images/opia-shoe-2-alt.jpg"],
+  "badge": "New",
+  "category": "heels",
+  "productLine": "footwear",
+  "sizes": [
+    { "label": "EU 36", "price": 5250 },
+    { "label": "EU 37", "price": 5250 },
+    { "label": "EU 38", "price": 5250 },
+    { "label": "EU 39", "price": 5250 },
+    { "label": "EU 40", "price": 5250 },
+    { "label": "EU 41", "price": 5250 }
+  ],
+  "colors": ["PEACH"],
+  "careInstructions": ["Wipe clean only", "Do not machine wash"]
+}
