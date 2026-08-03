@@ -1,0 +1,26 @@
+{
+  "id": "o9",
+  "name": "Skin Polish",
+  "shortDescription": "Herbal Haven Skin Polish with whitening agents.",
+  "description": "Herbal Haven by Nashra Skin Polish. Ready to use formula with powerful whitening agents for an instant glow.",
+  "price": 900,
+  "category": "skin-care",
+  "productLine": "organics",
+  "image": "/images/placeholder.png",
+  "images": [
+    "/images/placeholder.png"
+  ],
+  "variants": [
+    {
+      "size": "300g",
+      "price": 900
+    }
+  ],
+  "benefits": [
+    "Ready to use",
+    "Contains whitening agents"
+  ],
+  "howToUse": [
+    "Apply evenly to the skin and follow standard polishing procedures."
+  ]
+}

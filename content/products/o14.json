@@ -1,0 +1,26 @@
+{
+  "id": "o14",
+  "name": "Anti-Dandruff Hair Oil",
+  "shortDescription": "Specialized herbal oil to fight dandruff.",
+  "description": "Herbal Haven Anti-Dandruff Hair Oil. Treats the scalp to remove flakiness and prevent dandruff from returning.",
+  "price": 1300,
+  "category": "hair-care",
+  "productLine": "organics",
+  "image": "/images/placeholder.png",
+  "images": [
+    "/images/placeholder.png"
+  ],
+  "variants": [
+    {
+      "size": "200g",
+      "price": 1300
+    }
+  ],
+  "benefits": [
+    "Removes dandruff",
+    "Soothes flaky scalp"
+  ],
+  "howToUse": [
+    "Apply generously to the scalp and leave on before shampooing."
+  ]
+}

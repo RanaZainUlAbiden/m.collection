@@ -1,0 +1,25 @@
+{
+  "id": "o8",
+  "name": "Whitening Serum",
+  "shortDescription": "Herbal Haven Whitening Serum.",
+  "description": "Herbal Haven by Nashra Whitening Serum. Promotes a bright, glowing complexion.",
+  "price": 900,
+  "category": "skin-care",
+  "productLine": "organics",
+  "image": "/images/placeholder.png",
+  "images": [
+    "/images/placeholder.png"
+  ],
+  "variants": [
+    {
+      "size": "50g",
+      "price": 900
+    }
+  ],
+  "benefits": [
+    "Skin whitening"
+  ],
+  "howToUse": [
+    "Apply gently to the face."
+  ]
+}

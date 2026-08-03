@@ -1,0 +1,26 @@
+{
+  "id": "o7",
+  "name": "Body Scrub (Viscous Flavour)",
+  "shortDescription": "Herbal body scrub for soft skin.",
+  "description": "Herbal Haven by Nashra Body Scrub. Leaves skin feeling incredibly soft and helps remove wrinkles. (Note: Cannot be used on the face).",
+  "price": 800,
+  "category": "skin-care",
+  "productLine": "organics",
+  "image": "/images/placeholder.png",
+  "images": [
+    "/images/placeholder.png"
+  ],
+  "variants": [
+    {
+      "size": "300g",
+      "price": 800
+    }
+  ],
+  "benefits": [
+    "Soft skin",
+    "Removes wrinkles"
+  ],
+  "howToUse": [
+    "Apply to body during bath. Do not use on face."
+  ]
+}

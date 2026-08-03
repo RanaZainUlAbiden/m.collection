@@ -1,0 +1,26 @@
+{
+  "id": "o13",
+  "name": "Hair Growth Oil",
+  "shortDescription": "Herbal oil for promoting hair growth.",
+  "description": "Herbal Haven Hair Growth Oil. A rich blend of natural oils to stimulate the scalp and encourage fast, healthy hair growth.",
+  "price": 1200,
+  "category": "hair-care",
+  "productLine": "organics",
+  "image": "/images/placeholder.png",
+  "images": [
+    "/images/placeholder.png"
+  ],
+  "variants": [
+    {
+      "size": "200g",
+      "price": 1200
+    }
+  ],
+  "benefits": [
+    "Promotes hair growth",
+    "Stimulates scalp"
+  ],
+  "howToUse": [
+    "Massage into the scalp and leave on for a few hours before washing."
+  ]
+}

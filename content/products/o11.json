@@ -1,0 +1,25 @@
+{
+  "id": "o11",
+  "name": "Viscous Shampoo",
+  "shortDescription": "Herbal Viscous Shampoo.",
+  "description": "Herbal Haven Viscous Shampoo. Thick, rich formula for cleansing and nourishing the hair.",
+  "price": 1200,
+  "category": "hair-care",
+  "productLine": "organics",
+  "image": "/images/placeholder.png",
+  "images": [
+    "/images/placeholder.png"
+  ],
+  "variants": [
+    {
+      "size": "200g",
+      "price": 1200
+    }
+  ],
+  "benefits": [
+    "Deep cleansing"
+  ],
+  "howToUse": [
+    "Apply to wet hair, massage well, and rinse."
+  ]
+}

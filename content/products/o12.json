@@ -1,0 +1,26 @@
+{
+  "id": "o12",
+  "name": "Rice & Flexseeds Shampoo",
+  "shortDescription": "Nourishing shampoo with rice and flaxseeds.",
+  "description": "Herbal Haven Rice & Flexseeds Shampoo. A deeply nourishing blend to improve hair texture and promote healthy growth.",
+  "price": 1200,
+  "category": "hair-care",
+  "productLine": "organics",
+  "image": "/images/placeholder.png",
+  "images": [
+    "/images/placeholder.png"
+  ],
+  "variants": [
+    {
+      "size": "200g",
+      "price": 1200
+    }
+  ],
+  "benefits": [
+    "Improves hair texture",
+    "Nourishing"
+  ],
+  "howToUse": [
+    "Apply to wet hair, lather gently, and rinse thoroughly."
+  ]
+}

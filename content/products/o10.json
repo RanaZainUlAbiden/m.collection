@@ -1,0 +1,25 @@
+{
+  "id": "o10",
+  "name": "Rosemary, Amla & Reetha Shampoo",
+  "shortDescription": "Herbal shampoo for strong hair.",
+  "description": "Herbal Haven Shampoo with Rosemary, Amla, and Reetha. Formulated to strengthen hair from the roots.",
+  "price": 1000,
+  "category": "hair-care",
+  "productLine": "organics",
+  "image": "/images/placeholder.png",
+  "images": [
+    "/images/placeholder.png"
+  ],
+  "variants": [
+    {
+      "size": "200g",
+      "price": 1000
+    }
+  ],
+  "benefits": [
+    "Strong hair"
+  ],
+  "howToUse": [
+    "Apply to wet hair, massage into a lather, and rinse."
+  ]
+}

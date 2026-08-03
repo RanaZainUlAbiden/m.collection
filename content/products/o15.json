@@ -1,0 +1,26 @@
+{
+  "id": "o15",
+  "name": "Anti-Dandruff Hair Shampoo",
+  "shortDescription": "Herbal shampoo for a dandruff-free scalp.",
+  "description": "Herbal Haven Anti-Dandruff Hair Shampoo. Cleanses the scalp effectively while fighting dandruff and soothing irritation.",
+  "price": 1250,
+  "category": "hair-care",
+  "productLine": "organics",
+  "image": "/images/placeholder.png",
+  "images": [
+    "/images/placeholder.png"
+  ],
+  "variants": [
+    {
+      "size": "200g",
+      "price": 1250
+    }
+  ],
+  "benefits": [
+    "Fights dandruff",
+    "Soothes irritation"
+  ],
+  "howToUse": [
+    "Apply to wet hair, focus on the scalp, lather, and rinse."
+  ]
+}
