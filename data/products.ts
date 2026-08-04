@@ -114,6 +114,177 @@ export const products: Product[] = [
       howToUse: ["Apply gently to the face and neck before sleeping."]
     },
     {
+      id: "o7",
+      name: "Body Scrub (Viscous Flavour)",
+      shortDescription: "Herbal body scrub for soft skin.",
+      description: "Herbal Haven by Nashra Body Scrub. Leaves skin feeling incredibly soft and helps remove wrinkles. (Note: Cannot be used on the face).",
+      price: 800,
+      category: "skin-care",
+      productLine: "organics",
+      image: "/images/placeholder.png",
+      images: ["/images/placeholder.png"],
+      variants: [
+        {
+          size: "300g",
+          price: 800
+        }
+      ],
+      benefits: ["Soft skin", "Removes wrinkles"],
+      howToUse: ["Apply to body during bath. Do not use on face."]
+    },
+    {
+      id: "o8",
+      name: "Whitening Serum",
+      shortDescription: "Herbal Haven Whitening Serum.",
+      description: "Herbal Haven by Nashra Whitening Serum. Promotes a bright, glowing complexion.",
+      price: 900,
+      category: "skin-care",
+      productLine: "organics",
+      image: "/images/placeholder.png",
+      images: ["/images/placeholder.png"],
+      variants: [
+        {
+          size: "50g",
+          price: 900
+        }
+      ],
+      benefits: ["Skin whitening"],
+      howToUse: ["Apply gently to the face."]
+    },
+    {
+      id: "o9",
+      name: "Skin Polish",
+      shortDescription: "Herbal Haven Skin Polish with whitening agents.",
+      description: "Herbal Haven by Nashra Skin Polish. Ready to use formula with powerful whitening agents for an instant glow.",
+      price: 900,
+      category: "skin-care",
+      productLine: "organics",
+      image: "/images/placeholder.png",
+      images: ["/images/placeholder.png"],
+      variants: [
+        {
+          size: "300g",
+          price: 900
+        }
+      ],
+      benefits: ["Ready to use", "Contains whitening agents"],
+      howToUse: ["Apply evenly to the skin and follow standard polishing procedures."]
+    },
+    {
+      id: "o10",
+      name: "Rosemary, Amla & Reetha Shampoo",
+      shortDescription: "Herbal shampoo for strong hair.",
+      description: "Herbal Haven Shampoo with Rosemary, Amla, and Reetha. Formulated to strengthen hair from the roots.",
+      price: 1000,
+      category: "hair-care",
+      productLine: "organics",
+      image: "/images/placeholder.png",
+      images: ["/images/placeholder.png"],
+      variants: [
+        {
+          size: "200g",
+          price: 1000
+        }
+      ],
+      benefits: ["Strong hair"],
+      howToUse: ["Apply to wet hair, massage into a lather, and rinse."]
+    },
+    {
+      id: "o11",
+      name: "Viscous Shampoo",
+      shortDescription: "Herbal Viscous Shampoo.",
+      description: "Herbal Haven Viscous Shampoo. Thick, rich formula for cleansing and nourishing the hair.",
+      price: 1200,
+      category: "hair-care",
+      productLine: "organics",
+      image: "/images/placeholder.png",
+      images: ["/images/placeholder.png"],
+      variants: [
+        {
+          size: "200g",
+          price: 1200
+        }
+      ],
+      benefits: ["Deep cleansing"],
+      howToUse: ["Apply to wet hair, massage well, and rinse."]
+    },
+    {
+      id: "o12",
+      name: "Rice & Flexseeds Shampoo",
+      shortDescription: "Nourishing shampoo with rice and flaxseeds.",
+      description: "Herbal Haven Rice & Flexseeds Shampoo. A deeply nourishing blend to improve hair texture and promote healthy growth.",
+      price: 1200,
+      category: "hair-care",
+      productLine: "organics",
+      image: "/images/placeholder.png",
+      images: ["/images/placeholder.png"],
+      variants: [
+        {
+          size: "200g",
+          price: 1200
+        }
+      ],
+      benefits: ["Improves hair texture", "Nourishing"],
+      howToUse: ["Apply to wet hair, lather gently, and rinse thoroughly."]
+    },
+    {
+      id: "o13",
+      name: "Hair Growth Oil",
+      shortDescription: "Herbal oil for promoting hair growth.",
+      description: "Herbal Haven Hair Growth Oil. A rich blend of natural oils to stimulate the scalp and encourage fast, healthy hair growth.",
+      price: 1200,
+      category: "hair-care",
+      productLine: "organics",
+      image: "/images/placeholder.png",
+      images: ["/images/placeholder.png"],
+      variants: [
+        {
+          size: "200g",
+          price: 1200
+        }
+      ],
+      benefits: ["Promotes hair growth", "Stimulates scalp"],
+      howToUse: ["Massage into the scalp and leave on for a few hours before washing."]
+    },
+    {
+      id: "o14",
+      name: "Anti-Dandruff Hair Oil",
+      shortDescription: "Specialized herbal oil to fight dandruff.",
+      description: "Herbal Haven Anti-Dandruff Hair Oil. Treats the scalp to remove flakiness and prevent dandruff from returning.",
+      price: 1300,
+      category: "hair-care",
+      productLine: "organics",
+      image: "/images/placeholder.png",
+      images: ["/images/placeholder.png"],
+      variants: [
+        {
+          size: "200g",
+          price: 1300
+        }
+      ],
+      benefits: ["Removes dandruff", "Soothes flaky scalp"],
+      howToUse: ["Apply generously to the scalp and leave on before shampooing."]
+    },
+    {
+      id: "o15",
+      name: "Anti-Dandruff Hair Shampoo",
+      shortDescription: "Herbal shampoo for a dandruff-free scalp.",
+      description: "Herbal Haven Anti-Dandruff Hair Shampoo. Cleanses the scalp effectively while fighting dandruff and soothing irritation.",
+      price: 1250,
+      category: "hair-care",
+      productLine: "organics",
+      image: "/images/placeholder.png",
+      images: ["/images/placeholder.png"],
+      variants: [
+        {
+          size: "200g",
+          price: 1250
+        }
+      ],
+      benefits: ["Fights dandruff", "Soothes irritation"],
+      howToUse: ["Apply to wet hair, focus on the scalp, lather, and rinse."]
+    },
+    {
       id: "p11",
       name: "Dokht Heels",
       shortDescription: "Elegant Dokht heels.",
