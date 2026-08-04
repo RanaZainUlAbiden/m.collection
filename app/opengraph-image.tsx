@@ -1,6 +1,5 @@
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
 export const alt = 'Marjaan Collection - Premium Footwear & Organic Care';
 export const size = {
   width: 1200,

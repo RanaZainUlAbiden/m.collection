@@ -1,0 +1,161 @@
+# Decap CMS Configuration for Marjaan Collection
+# ──────────────────────────────────────────────
+# LOCAL DEVELOPMENT:
+#   1. Run: npx decap-server
+#   2. Run: npm run dev
+#   3. Open: http://localhost:3000/admin/
+#
+# PRODUCTION (Vercel):
+#   The local_backend setting is ignored in production.
+#   GitHub OAuth is handled by /api/decap-auth route.
+#   Set these env vars in Vercel:
+#     - OAUTH_GITHUB_CLIENT_ID
+#     - OAUTH_GITHUB_CLIENT_SECRET
+#     - OAUTH_REDIRECT_URI
+
+# ─── Backend ───────────────────────────────────
+backend:
+  name: github
+  repo: waleedislam/m.collection
+  branch: main
+  auth_endpoint: /api/decap-auth
+
+# Enable local development mode (run `npx decap-server` alongside `npm run dev`)
+local_backend: true
+
+# ─── Media ─────────────────────────────────────
+# Images are stored in public/images/ and served at /images/
+media_folder: "public/images"
+public_folder: "/images"
+
+# ─── Collections ───────────────────────────────
+collections:
+  # ─── Products Collection ───────────────────
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    folder: "content/products"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    slug: "{{id}}"
+    summary: "{{name}} — PKR {{price}} ({{productLine}})"
+    sortable_fields: ['id', 'name', 'price', 'productLine', 'category']
+    view_filters:
+      - label: "Footwear"
+        field: productLine
+        pattern: "footwear"
+      - label: "Clothing"
+        field: productLine
+        pattern: "clothing"
+      - label: "Organics"
+        field: productLine
+        pattern: "organics"
+      - label: "On Sale"
+        field: originalPrice
+        pattern: ".+"
+    fields:
+      # ─── Required Core Fields ───────────────
+      - { name: "id", label: "Product ID", widget: "string", hint: "Unique identifier, e.g. p13, c3, o3. Must be unique!" }
+      - { name: "name", label: "Product Name", widget: "string" }
+      - { name: "shortDescription", label: "Short Description", widget: "string", hint: "One-line summary shown on product cards" }
+      - { name: "description", label: "Full Description", widget: "text" }
+      - { name: "price", label: "Base Price (PKR)", widget: "number", value_type: "int", min: 0 }
+      - { name: "image", label: "Primary Image", widget: "image" }
+      - name: "productLine"
+        label: "Product Line"
+        widget: "select"
+        options: ["footwear", "organics", "clothing"]
+        hint: "Determines which section of the shop this product appears in"
+      - name: "category"
+        label: "Category"
+        widget: "select"
+        options: ["heels", "flats", "sandals", "hair-care", "skin-care", "JEANS", "SHIRTS", "PANTS"]
+        hint: "Sub-category within the product line"
+
+      # ─── Optional Fields ────────────────────
+      - { name: "originalPrice", label: "Original Price (for sales/discounts)", widget: "number", value_type: "int", min: 0, required: false, hint: "Set this to show a crossed-out old price and auto-calculate discount %" }
+      - name: "images"
+        label: "Additional Images"
+        widget: "list"
+        field: { name: "image", label: "Image", widget: "image" }
+        required: false
+        hint: "Gallery images shown on product detail page. First image should be the same as Primary Image."
+      - { name: "badge", label: "Badge (for homepage featured section)", widget: "string", required: false, hint: "e.g. 'Best Seller', 'New Arrival', 'Trending'. Products with badges appear on homepage!" }
+      - name: "colors"
+        label: "Available Colors"
+        widget: "list"
+        field: { name: "color", label: "Color", widget: "string" }
+        required: false
+        hint: "e.g. BLACK, BEIGE, PINK"
+      - { name: "weight", label: "Weight", widget: "string", required: false }
+
+      # ─── Sizing (Footwear & Clothing) ───────
+      - name: "sizes"
+        label: "Sizes (Footwear & Clothing)"
+        widget: "list"
+        required: false
+        hint: "Add sizes with their prices. For footwear use EU 36-41. For clothing use S/M/L/XL or W28/W30 etc."
+        fields:
+          - { name: "label", label: "Size Label", widget: "string" }
+          - { name: "price", label: "Price for this size (PKR)", widget: "number", value_type: "int", min: 0 }
+
+      # ─── Variants (Organics) ────────────────
+      - name: "variants"
+        label: "Variants (Organics - pricing by weight)"
+        widget: "list"
+        required: false
+        hint: "For organic products with different sizes/weights. e.g. 50ml, 100ml"
+        fields:
+          - { name: "size", label: "Size/Weight", widget: "string" }
+          - { name: "price", label: "Price (PKR)", widget: "number", value_type: "int", min: 0 }
+
+      # ─── Organics-specific ──────────────────
+      - name: "ingredients"
+        label: "Ingredients"
+        widget: "list"
+        field: { name: "ingredient", label: "Ingredient", widget: "string" }
+        required: false
+      - name: "howToUse"
+        label: "How to Use"
+        widget: "list"
+        field: { name: "step", label: "Step", widget: "string" }
+        required: false
+      - name: "benefits"
+        label: "Benefits"
+        widget: "list"
+        field: { name: "benefit", label: "Benefit", widget: "string" }
+        required: false
+      - { name: "skinHairType", label: "Skin/Hair Type", widget: "string", required: false }
+
+      # ─── Care Instructions ──────────────────
+      - name: "careInstructions"
+        label: "Care Instructions"
+        widget: "list"
+        field: { name: "instruction", label: "Instruction", widget: "string" }
+        required: false
+
+      # ─── Advanced (rarely used) ─────────────
+      - { name: "usage", label: "Usage", widget: "string", required: false }
+      - { name: "scale", label: "Scale (3D viewer)", widget: "number", value_type: "float", required: false }
+      - { name: "rotate", label: "Rotate (3D viewer)", widget: "number", value_type: "float", required: false }
+
+  # ─── Testimonials Collection ────────────────
+  - name: "testimonials"
+    label: "Testimonials"
+    label_singular: "Testimonial"
+    folder: "content/testimonials"
+    create: true
+    delete: true
+    extension: "json"
+    format: "json"
+    slug: "{{id}}"
+    summary: "{{name}} — {{city}}"
+    fields:
+      - { name: "id", label: "Review ID", widget: "string", hint: "Unique identifier, e.g. r11" }
+      - { name: "name", label: "Customer Name", widget: "string" }
+      - { name: "city", label: "City", widget: "string" }
+      - { name: "date", label: "Date", widget: "string", hint: "e.g. 'July 12, 2026'" }
+      - { name: "purchased", label: "Product Purchased", widget: "string", hint: "e.g. 'SPARKE SLIDES - Black (EU 38)'" }
+      - { name: "comment", label: "Review Comment", widget: "text" }
