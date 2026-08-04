@@ -5,11 +5,11 @@
   "/sitemap.xml/route": "/sitemap.xml",
   "/opengraph-image/route": "/opengraph-image",
   "/icon.png/route": "/icon.png",
-  "/shop/[slug]/page": "/shop/[slug]",
   "/checkout/page": "/checkout",
+  "/shop/[slug]/page": "/shop/[slug]",
   "/page": "/",
-  "/testimonials/page": "/testimonials",
-  "/about/page": "/about",
+  "/contact/page": "/contact",
   "/shop/page": "/shop",
-  "/contact/page": "/contact"
+  "/about/page": "/about",
+  "/testimonials/page": "/testimonials"
 }
