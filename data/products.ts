@@ -153,7 +153,7 @@ export const products: Product[] = [
     },
     {
       id: "o9",
-      name: "Glutawhite Skin Polish",
+      name: "Skin Polish",
       shortDescription: "Herbal Haven Skin Polish with whitening agents.",
       description: "Herbal Haven by Nashra Skin Polish. Ready to use formula with powerful whitening agents for an instant glow.",
       price: 900,
@@ -172,7 +172,7 @@ export const products: Product[] = [
     },
     {
       id: "o10",
-      name: "36 Herbs Keratin Shampoo",
+      name: "Rosemary, Amla & Reetha Shampoo",
       shortDescription: "Herbal shampoo for strong hair.",
       description: "Herbal Haven Shampoo with Rosemary, Amla, and Reetha. Formulated to strengthen hair from the roots.",
       price: 1000,
@@ -191,7 +191,7 @@ export const products: Product[] = [
     },
     {
       id: "o11",
-      name: "Hibiscus Hair Growth Shampoo",
+      name: "Viscous Shampoo",
       shortDescription: "Herbal Viscous Shampoo.",
       description: "Herbal Haven Viscous Shampoo. Thick, rich formula for cleansing and nourishing the hair.",
       price: 1200,
@@ -229,7 +229,7 @@ export const products: Product[] = [
     },
     {
       id: "o13",
-      name: "36 Herbs Hair Growth Oil",
+      name: "Hair Growth Oil",
       shortDescription: "Herbal oil for promoting hair growth.",
       description: "Herbal Haven Hair Growth Oil. A rich blend of natural oils to stimulate the scalp and encourage fast, healthy hair growth.",
       price: 1200,
