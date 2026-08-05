@@ -1,14 +1,14 @@
 {
   "id": "o11",
-  "name": "Viscous Shampoo",
+  "name": "Hibiscus Hair Growth Shampoo",
   "shortDescription": "Herbal Viscous Shampoo.",
   "description": "Herbal Haven Viscous Shampoo. Thick, rich formula for cleansing and nourishing the hair.",
   "price": 1200,
   "category": "hair-care",
   "productLine": "organics",
-  "image": "/images/placeholder.png",
+  "image": "/images/hibiscus-shampoo.png",
   "images": [
-    "/images/placeholder.png"
+    "/images/hibiscus-shampoo.png"
   ],
   "variants": [
     {

@@ -1,14 +1,14 @@
 {
   "id": "o10",
-  "name": "Rosemary, Amla & Reetha Shampoo",
+  "name": "36 Herbs Keratin Shampoo",
   "shortDescription": "Herbal shampoo for strong hair.",
   "description": "Herbal Haven Shampoo with Rosemary, Amla, and Reetha. Formulated to strengthen hair from the roots.",
   "price": 1000,
   "category": "hair-care",
   "productLine": "organics",
-  "image": "/images/placeholder.png",
+  "image": "/images/keratin-shampoo.png",
   "images": [
-    "/images/placeholder.png"
+    "/images/keratin-shampoo.png"
   ],
   "variants": [
     {

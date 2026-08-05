@@ -1,14 +1,14 @@
 {
   "id": "o13",
-  "name": "Hair Growth Oil",
+  "name": "36 Herbs Hair Growth Oil",
   "shortDescription": "Herbal oil for promoting hair growth.",
   "description": "Herbal Haven Hair Growth Oil. A rich blend of natural oils to stimulate the scalp and encourage fast, healthy hair growth.",
   "price": 1200,
   "category": "hair-care",
   "productLine": "organics",
-  "image": "/images/placeholder.png",
+  "image": "/images/36-herbs-oil.png",
   "images": [
-    "/images/placeholder.png"
+    "/images/36-herbs-oil.png"
   ],
   "variants": [
     {

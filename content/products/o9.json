@@ -1,14 +1,14 @@
 {
   "id": "o9",
-  "name": "Skin Polish",
+  "name": "Glutawhite Skin Polish",
   "shortDescription": "Herbal Haven Skin Polish with whitening agents.",
   "description": "Herbal Haven by Nashra Skin Polish. Ready to use formula with powerful whitening agents for an instant glow.",
   "price": 900,
   "category": "skin-care",
   "productLine": "organics",
-  "image": "/images/placeholder.png",
+  "image": "/images/skin-polish.png",
   "images": [
-    "/images/placeholder.png"
+    "/images/skin-polish.png"
   ],
   "variants": [
     {
