@@ -1,0 +1,15 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/decap-auth/route": "/api/decap-auth",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/opengraph-image/route": "/opengraph-image",
+  "/icon.png/route": "/icon.png",
+  "/checkout/page": "/checkout",
+  "/shop/[slug]/page": "/shop/[slug]",
+  "/page": "/",
+  "/contact/page": "/contact",
+  "/shop/page": "/shop",
+  "/about/page": "/about",
+  "/testimonials/page": "/testimonials"
+}

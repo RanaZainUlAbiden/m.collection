@@ -57,12 +57,12 @@ interface ContentProduct {
 interface ContentTestimonial {
   id: string;
   name: string;
-  city: string;
-  date: string;
-  purchased: string;
+  city?: string;
+  date?: string;
+  purchased?: string;
+  rating?: number;
   comment: string;
 }
-
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 /**
@@ -215,12 +215,12 @@ function generateTestimonialsData(): void {
 export type Testimonial = {
     id: string;
     name: string;
-    city: string;
-    date: string;
-    purchased: string;
+    city?: string;
+    date?: string;
+    purchased?: string;
+    rating?: number;
     comment: string;
 };
-
 export const testimonialsData: Testimonial[] = [
 ${testimonialLiterals.map((t) => `    ${t}`).join(",\n")}
 ];

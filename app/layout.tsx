@@ -3,7 +3,6 @@ import { Fraunces, Manrope, Space_Mono, Playfair_Display } from "next/font/googl
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-
 import { CartProvider } from "@/hooks/useCart";
 import { Cart } from "@/components/shared/Cart";
 
@@ -11,17 +10,14 @@ const manrope = Manrope({
   variable: "--font-sans",
   subsets: ["latin"],
 });
-
 const fraunces = Fraunces({
   variable: "--font-heading",
   subsets: ["latin"],
 });
-
 const playfair = Playfair_Display({
   variable: "--font-serif",
   subsets: ["latin"],
 });
-
 const spaceMono = Space_Mono({
   weight: ["400", "700"],
   variable: "--font-mono",
@@ -51,6 +47,14 @@ export const metadata: Metadata = {
     siteName: "Marjaan Collection",
     locale: "en_PK",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Marjaan Collection",
+      },
+    ],
   },
 };
 
@@ -72,7 +76,6 @@ const jsonLd = {
 import { AnimatedFavicon } from "@/components/ui/AnimatedFavicon";
 import { Preloader } from "@/components/ui/Preloader";
 import { BackToTop } from "@/components/ui/BackToTop";
-
 import Script from "next/script";
 
 export default function RootLayout({
@@ -102,7 +105,6 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-
           <Cart />
           <AnimatedFavicon />
           <BackToTop />
