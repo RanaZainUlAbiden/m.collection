@@ -191,7 +191,7 @@ export const products: Product[] = [
     },
     {
       id: "o11",
-      name: "Viscous Shampoo",
+      name: "Hibiscus Hair Growth Shampoo",
       shortDescription: "Herbal Viscous Shampoo.",
       description: "Herbal Haven Viscous Shampoo. Thick, rich formula for cleansing and nourishing the hair.",
       price: 1200,
