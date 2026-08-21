@@ -6,6 +6,8 @@ import { Footer } from "@/components/layout/Footer";
 import { CartProvider } from "@/hooks/useCart";
 import { Cart } from "@/components/shared/Cart";
 
+
+
 const manrope = Manrope({
   variable: "--font-sans",
   subsets: ["latin"],
