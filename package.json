@@ -4,7 +4,7 @@
   "private": true,
   "author": "Haseeb <muhammadhaseebhassan23@gmail.com>",
   "scripts": {
- "dev": "tsx scripts/generate-products.ts && next dev --webpack",
+ "dev": "tsx scripts/generate-products.ts && next dev",
   "build": "tsx scripts/generate-products.ts && next build",
   "start": "next start",
   "lint": "eslint",
