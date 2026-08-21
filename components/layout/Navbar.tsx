@@ -33,7 +33,7 @@ const navLinks = [
 ];
 
 // Path to the APK inside /public — update the filename here if you ever re-upload a new build
-const APP_DOWNLOAD_URL = "/downloads/mr-footwear-app.apk";
+const APP_DOWNLOAD_URL = "https://github.com/waleedislam/m.collection/releases/download/v1.0.0/mr-footwear-app.apk";
 
 export function Navbar() {
     // Tracks if the user has scrolled past 20px to apply the translucent backdrop effect
